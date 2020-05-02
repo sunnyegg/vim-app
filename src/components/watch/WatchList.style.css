@@ -1,0 +1,33 @@
+/* mobile */
+@media only screen and (max-width: 600px) {
+  .small {
+    height: calc(0.42 * 200px);
+    width: calc(0.42 * 355px);
+  }
+
+  .large {
+    height: calc(1 * 200px);
+    width: calc(1 * 355px);
+  }
+
+  .watchlist {
+    margin: 0 0 0.5rem 0;
+  }
+}
+
+/* desktop */
+@media only screen and (min-width: 600px) {
+  .small {
+    height: calc(1 * 200px);
+    width: calc(1 * 355px);
+  }
+
+  .large {
+    height: calc(1.6 * 200px);
+    width: calc(1.6 * 355px);
+  }
+
+  .watchlist {
+    margin: 0 0.5rem 0.5rem 0;
+  }
+}

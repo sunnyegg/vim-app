@@ -1,0 +1,34 @@
+/* mobile */
+@media only screen and (max-width: 600px) {
+  .content-video {
+    justify-content: center;
+  }
+
+  .home {
+    margin: 1rem 1rem 5rem 1rem;
+  }
+}
+
+/* desktop */
+@media only screen and (min-width: 600px) {
+  .home {
+    margin: 1rem 1rem 1rem 6rem;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  transition: 300ms;
+}
+
+.content-video {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  transition: 300ms;
+}
+
+.home {
+  transition: 300ms;
+}

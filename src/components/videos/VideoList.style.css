@@ -1,0 +1,80 @@
+.card
+  .card-action
+  a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  margin: 0;
+  outline: none;
+}
+
+.card-action {
+  padding: 1rem 1rem !important;
+}
+
+.card .icon {
+  border-radius: 50%;
+  height: 2rem;
+  margin: 0 1rem 0 0;
+  width: 2rem;
+}
+
+.card-action-header {
+  align-items: center;
+  display: flex;
+  margin: 0 0 0.5rem 0;
+}
+
+.card-action .card-title {
+  display: -webkit-box;
+  font-size: 1.1rem !important;
+  font-weight: 400 !important;
+  line-height: 1em;
+  overflow: hidden;
+  width: 75%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+}
+
+.card-action .card-title:hover {
+  color: grey !important;
+}
+
+.card-action p {
+  margin: 0 0 0 3rem;
+}
+
+.channel {
+  display: -webkit-box;
+  overflow: hidden;
+  text-transform: none !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+}
+
+.channel:hover {
+  color: grey !important;
+}
+
+.status {
+  cursor: default;
+  font-size: 1em !important;
+  margin: 1rem 0.5rem;
+  left: unset !important;
+  padding: 0 0.5rem !important;
+  right: 0 !important;
+}
+
+.tag {
+  bottom: unset !important;
+  cursor: default;
+  font-size: 1em !important;
+  margin: 0.5rem;
+  padding: 0 0.5rem !important;
+  top: 0;
+}
+
+.video-list {
+  height: 250px !important;
+  margin: 0 0.5rem 0.5rem 0;
+  width: 290px !important;
+}

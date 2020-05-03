@@ -1,49 +1,52 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
-import { VtuberContext } from './VtuberContext';
+import { ChannelContext } from './ChannelContext';
 
 export const VideoContext = createContext();
 const URL = process.env.REACT_APP_API_URL;
 
 const VideoContextProvider = (props) => {
-  const { vtubers } = useContext(VtuberContext);
+  const { channels } = useContext(ChannelContext);
   const [videos, setVideos] = useState({
     liveVideos: [],
     completedVideos: [],
     upcomingVideos: [],
   });
 
-  const getVideos = async (vtubersData) => {
-    const getAndRestructure = async (api, data, type) => {
+  const getVideos = async (channelsData) => {
+    const getAll = async (api, channel) => {
+      const video = await axios
+        .get(`${api}/api/v1/videos/${channel.id}`)
+        .catch((err) => {
+          if (err.response.status === 404) {
+            console.info('no videos');
+          } else {
+            console.error(err);
+          }
+        });
+
+      if (!video) {
+        return null;
+      }
+
+      return video;
+    };
+
+    const restructure = async (videoData, channelData, type) => {
       const imgReg = /hqdefault.*/gm;
 
-      try {
-        const video = await axios.get(
-          `${api}/api/v1/videos/vliver/${data.id}?eventType=${type}`
-        );
-
-        if (video) {
-          for (const item of video.data.data) {
-            item.thumbnail = item.thumbnail.replace(
-              imgReg,
-              'maxresdefault.jpg'
-            );
-            item['channelIcon'] = data.channel.channelIcon;
-            item['agency'] = data.agency;
-          }
-
-          return video.data.data;
+      if (videoData.length) {
+        for (const item of videoData) {
+          item.thumbnail = item.thumbnail.replace(imgReg, 'maxresdefault.jpg');
+          item['channelIcon'] = channelData.channel.channelIcon;
+          item['agency'] = channelData.agency;
         }
 
-        return [];
-      } catch (err) {
-        if (err.response.status === 404) {
-          console.info('no videos');
-        } else {
-          console.error(err);
-        }
+        return videoData.filter((video) => video.eventType === type);
       }
+
+      return [];
     };
 
     const flatSortFilter = (item) => {
@@ -55,16 +58,34 @@ const VideoContextProvider = (props) => {
         .filter((val) => val);
     };
 
-    const liveVideos = vtubersData.map(async (vtuber) => {
-      return await getAndRestructure(URL, vtuber, 'live');
+    const liveVideos = channelsData.map(async (channel) => {
+      const videos = await getAll(URL, channel);
+
+      if (!videos) {
+        return [];
+      }
+
+      return restructure(videos.data.data, channel, 'live');
     });
 
-    const completedVideos = vtubersData.map(async (vtuber) => {
-      return await getAndRestructure(URL, vtuber, 'completed');
+    const upcomingVideos = channelsData.map(async (channel) => {
+      const videos = await getAll(URL, channel);
+
+      if (!videos) {
+        return [];
+      }
+
+      return restructure(videos.data.data, channel, 'upcoming');
     });
 
-    const upcomingVideos = vtubersData.map(async (vtuber) => {
-      return await getAndRestructure(URL, vtuber, 'upcoming');
+    const completedVideos = channelsData.map(async (channel) => {
+      const videos = await getAll(URL, channel);
+
+      if (!videos) {
+        return [];
+      }
+
+      return restructure(videos.data.data, channel, 'completed');
     });
 
     const resultLive = await Promise.all(liveVideos).then((item) => {
@@ -89,8 +110,8 @@ const VideoContextProvider = (props) => {
   };
 
   useEffect(() => {
-    getVideos(vtubers);
-  }, [vtubers]);
+    getVideos(channels);
+  }, [channels]);
 
   return (
     <VideoContext.Provider value={{ videos }}>

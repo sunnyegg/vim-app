@@ -19,8 +19,6 @@ const VideoList = (props) => {
     }
   };
 
-  const iconPlaceholder =
-    'https://via.placeholder.com/80x80.png?text=Loading...';
   const thumbnailPlaceholder =
     'https://via.placeholder.com/480x360.png?text=Loading...';
   const urlChannel = props.channelId
@@ -31,7 +29,13 @@ const VideoList = (props) => {
     : '';
 
   return (
-    <div className="card small video-list">
+    <div
+      className={
+        props.type === 'live'
+          ? 'card small video-list animation-pulse'
+          : 'card small video-list'
+      }
+    >
       <div className="card-image">
         <a href={urlVideo} target="_blank" rel="noopener noreferrer">
           <img
@@ -43,24 +47,9 @@ const VideoList = (props) => {
         <span className="card-title tag blue darken-3">
           {props.agency || 'No Agency'}
         </span>
-        {props.type === 'live' ? (
-          <span className="btn-floating card-title status red white-text">
-            Live
-          </span>
-        ) : (
-          ''
-        )}
       </div>
       <div className="card-action">
         <div className="card-action-header">
-          <a
-            href={urlChannel}
-            target="_blank"
-            rel="noopener noreferrer"
-            title={props.channelName}
-          >
-            <img src={props.icon || iconPlaceholder} alt="" className="icon" />
-          </a>
           <a
             href={urlVideo}
             target="_blank"

@@ -7,11 +7,13 @@ const Sidebar = () => {
     <div className="sidebar">
       <ul className="sidebar-content">
         <li className="sidebar-item">
+          <span className="tooltip">Home</span>
           <Link to="/" className="sidebar-link">
             <i className="icon material-icons">home</i>
           </Link>
         </li>
         <li className="sidebar-item">
+          <span className="tooltip">Watch</span>
           <Link to="/watch" className="sidebar-link">
             <i className="icon material-icons">play_circle_filled</i>
           </Link>

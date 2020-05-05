@@ -16,21 +16,21 @@ const VideoContextProvider = (props) => {
 
   const getVideos = async (channelsData) => {
     const getAll = async (api, channel) => {
-      const video = await axios
-        .get(`${api}/api/v1/videos/${channel.id}`)
-        .catch((err) => {
-          if (err.response.status === 404) {
-            console.info('no videos');
-          } else {
-            console.error(err);
-          }
-        });
+      try {
+        const video = await axios.get(`${api}/api/v1/videos/${channel.id}`);
 
-      if (!video) {
-        return null;
+        if (!video) {
+          return null;
+        }
+
+        return video;
+      } catch (err) {
+        if (err.response.status === 404) {
+          console.info('no videos');
+        } else {
+          console.error(err);
+        }
       }
-
-      return video;
     };
 
     const restructure = async (videoData, channelData, type) => {
@@ -53,6 +53,10 @@ const VideoContextProvider = (props) => {
       return item
         .flat(1)
         .sort((a, b) => {
+          if (a.eventType === 'upcoming') {
+            return new Date(a.date) - new Date(b.date);
+          }
+
           return new Date(b.date) - new Date(a.date);
         })
         .filter((val) => val);
@@ -92,18 +96,18 @@ const VideoContextProvider = (props) => {
       return flatSortFilter(item);
     });
 
-    const resultComplete = await Promise.all(completedVideos).then((item) => {
-      return flatSortFilter(item).splice(0, 8);
-    });
-
     const resultUpcoming = await Promise.all(upcomingVideos).then((item) => {
       return flatSortFilter(item);
     });
 
+    const resultComplete = await Promise.all(completedVideos).then((item) => {
+      return flatSortFilter(item).splice(0, 8);
+    });
+
     const allVideos = {
       liveVideos: resultLive,
-      completedVideos: resultComplete,
       upcomingVideos: resultUpcoming,
+      completedVideos: resultComplete,
     };
 
     setVideos(allVideos);

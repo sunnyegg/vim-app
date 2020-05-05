@@ -5,10 +5,6 @@
   outline: none;
 }
 
-.card-action {
-  padding: 1rem 1rem !important;
-}
-
 .card .icon {
   border-radius: 50%;
   height: 2rem;
@@ -16,19 +12,22 @@
   width: 2rem;
 }
 
-.card-action-header {
-  align-items: center;
-  display: flex;
-  margin: 0 0 0.5rem 0;
+.card .card-image {
+  max-height: 100%;
+}
+
+.card-action {
+  border-top: 0 !important;
+  padding: 0.5rem 0.5rem !important;
 }
 
 .card-action .card-title {
   display: -webkit-box;
-  font-size: 1.1rem !important;
-  font-weight: 400 !important;
-  line-height: 1em;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  text-align: center;
   overflow: hidden;
-  width: 75%;
+  width: 100%;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   -webkit-box-pack: center;
@@ -39,7 +38,15 @@
 }
 
 .card-action p {
-  margin: 0 0 0 3rem;
+  font-size: 12px;
+  margin: 0;
+  text-align: center;
+}
+
+.card-action-header {
+  align-items: center;
+  display: flex;
+  margin: 0;
 }
 
 .channel {
@@ -56,6 +63,8 @@
 }
 
 .status {
+  border: 1px solid white;
+  bottom: 5px !important;
   cursor: default;
   font-size: 1em !important;
   margin: 1rem 0.5rem;
@@ -75,6 +84,6 @@
 
 .video-list {
   height: 250px !important;
-  margin: 0 0.5rem 0.5rem 0;
-  width: 290px !important;
+  margin: 0 1rem 1rem 0;
+  width: 280px !important;
 }

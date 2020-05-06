@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LivebarItem from './LivebarItem';
 import './Watchbar.style.css';
 
-const Watchbar = ({ addWatchList, removeWatch, watchList, videos }) => {
+const Watchbar = ({
+  addWatchList,
+  changeLayout,
+  removeWatch,
+  watchList,
+  videos,
+}) => {
   return (
-    <div className="watchbar">
-      <div className="livebar">
+    <div className="watchbar grey lighten-3">
+      <div
+        className={videos.length < 12 ? 'livebar' : 'livebar scroll-vertical'}
+      >
         <ul className="livebar-content">
           {videos.map((video) => {
             return (
@@ -22,6 +30,15 @@ const Watchbar = ({ addWatchList, removeWatch, watchList, videos }) => {
             );
           })}
         </ul>
+      </div>
+      <div className="livecontrol">
+        <button
+          className="waves-effect waves-dark btn-flat"
+          onClick={changeLayout}
+          title="Change Layout"
+        >
+          <i className="material-icons icon">grid_on</i>
+        </button>
       </div>
     </div>
   );

@@ -7,8 +7,10 @@ import './Watch.style.css';
 
 const Watch = () => {
   const { videos } = useContext(VideoContext);
+  const userLayout = localStorage.getItem('layout') || 'small';
   const [loading, setLoading] = useState(true);
   const [watchList, setWatchList] = useState([]);
+  const [layout, setLayout] = useState(userLayout);
 
   const filterData = (data) => {
     return [...new Set(data)];
@@ -28,6 +30,16 @@ const Watch = () => {
     setWatchList(newWatch);
   };
 
+  const changeLayout = () => {
+    if (userLayout === 'small') {
+      setLayout('large');
+      localStorage.setItem('layout', 'large');
+    } else {
+      setLayout('small');
+      localStorage.setItem('layout', 'small');
+    }
+  };
+
   useEffect(() => {
     if (videos) {
       setLoading((loading) => !loading);
@@ -43,14 +55,15 @@ const Watch = () => {
         ) : (
           <>
             <Watchbar
+              addWatchList={addWatchList}
+              changeLayout={changeLayout}
+              removeWatch={removeWatch}
               videos={videos?.liveVideos}
               watchList={watchList}
-              addWatchList={addWatchList}
-              removeWatch={removeWatch}
             />
             <div className="watch-content left-alignment">
               {watchList.map((videoId) => {
-                return <WatchList key={videoId} id={videoId} />;
+                return <WatchList key={videoId} id={videoId} layout={layout} />;
               })}
             </div>
           </>

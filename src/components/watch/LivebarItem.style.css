@@ -1,20 +1,21 @@
 .background {
-  filter: blur(1px);
+  filter: blur(0.8px);
   height: 100%;
-  opacity: 0.8;
+  opacity: 1;
   position: absolute;
   top: 0;
-  width: 100%;
-  -webkit-filter: blur(1px);
+  width: 150%;
 }
 
 .livebar-item {
   align-items: center;
+  border: 1px solid black;
   cursor: pointer;
   display: flex;
   height: auto;
   justify-content: center;
   margin: 0.1rem;
+  overflow: hidden;
   padding: 0.5rem;
   position: relative;
   width: 100px;

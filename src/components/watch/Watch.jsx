@@ -49,25 +49,24 @@ const Watch = () => {
   return (
     <>
       {loading ? <Loadingbar /> : ''}
+      <Watchbar
+        addWatchList={addWatchList}
+        changeLayout={changeLayout}
+        removeWatch={removeWatch}
+        videos={videos?.liveVideos}
+        watchList={watchList}
+      />
+
       <div className="watch">
-        {!videos?.liveVideos.length ? (
-          <p>No live videos...</p>
-        ) : (
-          <>
-            <Watchbar
-              addWatchList={addWatchList}
-              changeLayout={changeLayout}
-              removeWatch={removeWatch}
-              videos={videos?.liveVideos}
-              watchList={watchList}
-            />
-            <div className="watch-content left-alignment">
-              {watchList.map((videoId) => {
-                return <WatchList key={videoId} id={videoId} layout={layout} />;
-              })}
-            </div>
-          </>
-        )}
+        <div className="watch-content left-alignment">
+          {!loading && !videos?.liveVideos.length ? (
+            <p>No live videos...</p>
+          ) : (
+            watchList.map((videoId) => {
+              return <WatchList key={videoId} id={videoId} layout={layout} />;
+            })
+          )}
+        </div>
       </div>
     </>
   );

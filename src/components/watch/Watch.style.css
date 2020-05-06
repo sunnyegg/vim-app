@@ -1,14 +1,30 @@
 /* mobile */
 @media only screen and (max-width: 600px) {
+  .no-watchbar {
+    margin: 3rem 0 0 0rem !important;
+  }
+
   .watch {
     margin: 0 0 5rem 0;
+  }
+
+  .watch-content {
+    margin: 1rem 0 0 0.5rem;
   }
 }
 
 /* desktop */
 @media only screen and (min-width: 600px) {
+  .no-sidebar {
+    margin: 1rem 0 0 0 !important;
+  }
+
   .watch {
     margin: 0 0 1rem 5rem;
+  }
+
+  .watch-content {
+    margin: 1rem 0 0 1rem;
   }
 }
 
@@ -20,9 +36,12 @@
   justify-content: center;
 }
 
+.watch {
+  transition: all 300ms;
+}
+
 .watch-content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 1rem 0 0 0;
 }

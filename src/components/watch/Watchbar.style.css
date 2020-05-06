@@ -1,7 +1,31 @@
+@media only screen and (max-width: 600px) {
+  .livecontrol .icon {
+    font-size: 1.2rem;
+  }
+
+  .watchbar {
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .livecontrol .icon {
+    font-size: 1.5rem;
+  }
+
+  .watchbar {
+    margin: 0 0 0 5rem;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   .livebar {
     overflow-x: scroll;
   }
+}
+
+.hide-watchbar {
+  margin: -100px 0 0 0;
 }
 
 .livebar {
@@ -20,10 +44,14 @@
 
 .livecontrol {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 150px;
 }
 
-.livecontrol .icon {
-  font-size: 1.5rem;
+.no-margin {
+  margin: 0 !important;
+  transition: all 300ms;
 }
 
 .scroll-vertical {
@@ -35,4 +63,5 @@
   flex-direction: row;
   height: 100px;
   padding: 0.5rem;
+  transition: all 300ms;
 }

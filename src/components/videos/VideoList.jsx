@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -37,28 +38,52 @@ const VideoList = (props) => {
       }
     >
       <div className="card-image">
-        <a href={urlVideo} target="_blank" rel="noopener noreferrer">
-          <img
-            src={props.thumbnail || thumbnailPlaceholder}
-            alt="thumbnail"
+        {props.type === 'live' ? (
+          <Link to="/watch" title={props.title}>
+            <img
+              src={props.thumbnail || thumbnailPlaceholder}
+              alt="thumbnail"
+            />
+          </Link>
+        ) : (
+          <a
+            href={urlVideo}
+            target="_blank"
+            rel="noopener noreferrer"
             title={props.title}
-          />
-        </a>
+          >
+            <img
+              src={props.thumbnail || thumbnailPlaceholder}
+              alt="thumbnail"
+            />
+          </a>
+        )}
+
         <span className="card-title tag blue darken-3">
           {props.agency || 'No Agency'}
         </span>
       </div>
       <div className="card-action">
         <div className="card-action-header">
-          <a
-            href={urlVideo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card-title black-text"
-            title={props.title}
-          >
-            <span>{props.title || ''}</span>
-          </a>
+          {props.type === 'live' ? (
+            <Link
+              to="/watch"
+              className="card-title black-text"
+              title={props.title}
+            >
+              <span>{props.title || ''}</span>
+            </Link>
+          ) : (
+            <a
+              href={urlVideo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-title black-text"
+              title={props.title}
+            >
+              <span>{props.title || ''}</span>
+            </a>
+          )}
         </div>
         <a
           href={urlChannel}

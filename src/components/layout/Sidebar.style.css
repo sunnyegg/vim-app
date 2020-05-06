@@ -1,9 +1,12 @@
 /* mobile */
 @media only screen and (max-width: 600px) {
+  .hide-sidebar {
+    bottom: -60px !important;
+  }
+
   .sidebar {
     bottom: 0;
     height: 4rem;
-    transition: 300ms;
     width: 100vw !important;
   }
 
@@ -22,6 +25,10 @@
 
 /* desktop */
 @media only screen and (min-width: 600px) {
+  .hide-sidebar {
+    left: -100px !important;
+  }
+
   .sidebar {
     height: 100vh;
     left: 0;
@@ -45,7 +52,7 @@
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   position: fixed;
-  width: 5rem;
+  transition: 300ms;
   z-index: 5;
 }
 

@@ -63,7 +63,14 @@ const Watch = () => {
             <p>No live videos...</p>
           ) : (
             watchList.map((videoId) => {
-              return <WatchList key={videoId} id={videoId} layout={layout} />;
+              return (
+                <WatchList
+                  key={videoId}
+                  id={videoId}
+                  layout={layout}
+                  watchList={watchList}
+                />
+              );
             })
           )}
         </div>

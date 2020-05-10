@@ -18,6 +18,12 @@ const Sidebar = () => {
             <i className="icon material-icons">play_circle_filled</i>
           </Link>
         </li>
+        <li className="sidebar-item">
+          <span className="tooltip">Vtubers</span>
+          <Link to="/vtubers" className="sidebar-link">
+            <i className="icon material-icons">group</i>
+          </Link>
+        </li>
       </ul>
     </div>
   );

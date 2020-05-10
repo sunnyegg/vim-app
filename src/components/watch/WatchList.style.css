@@ -24,7 +24,13 @@
 
   .large {
     height: calc(1.6 * 200px);
-    width: calc(1.6 * 355px);
+    width: calc(1.75 * 355px);
+  }
+
+  .max {
+    display: flex;
+    flex: 1;
+    height: 80vh;
   }
 
   .watchlist {

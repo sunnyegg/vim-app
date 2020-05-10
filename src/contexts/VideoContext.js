@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-
 import { ChannelContext } from './ChannelContext';
 
 export const VideoContext = createContext();
@@ -35,12 +34,17 @@ const VideoContextProvider = (props) => {
 
     const restructure = async (videoData, channelData, type) => {
       const imgReg = /hqdefault.*/gm;
+      const dateNow = new Date().toISOString();
 
       if (videoData.length) {
         for (const item of videoData) {
           item.thumbnail = item.thumbnail.replace(imgReg, 'maxresdefault.jpg');
           item['channelIcon'] = channelData.channel.channelIcon;
           item['agency'] = channelData.agency;
+
+          if (item.eventType === 'upcoming' && dateNow >= item.date) {
+            item.eventType = 'live';
+          }
         }
 
         return videoData.filter((video) => video.eventType === type);

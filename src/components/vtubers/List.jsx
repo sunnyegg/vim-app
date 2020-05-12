@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState, useMemo } from "react";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
-import Table from "./Table";
-import Loadingbar from "../layout/Loadingbar";
-import { ChannelContext } from "../../contexts/ChannelContext";
-import { StatisticsContext } from "../../contexts/StatisticsContext";
-import "./List.style.scss";
+import React, { useContext, useEffect, useState, useMemo } from 'react';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import Table from './Table';
+import Loadingbar from '../layout/Loadingbar';
+import { ChannelContext } from '../../contexts/ChannelContext';
+import { StatisticsContext } from '../../contexts/StatisticsContext';
+import './List.style.scss';
 
 dayjs.extend(localizedFormat);
 
@@ -20,14 +20,14 @@ const List = () => {
       let output;
       const latest = allData[allData.length - 1];
       for (const channel of data.channels) {
-        if (channel.id === latest["channel"]) {
+        if (channel.id === latest['channel']) {
           const publishedAt = dayjs(channel.channel.channelPublishedAt).format(
-            "LL"
+            'LL'
           );
-          const updatedAt = dayjs(JSON.parse(latest["date"])).format("LL");
+          const updatedAt = dayjs(JSON.parse(latest['date'])).format('LL');
           output = {
             channelName: channel.channel.channelName,
-            subscriber: latest["statistics"].subscriberCount,
+            subscriber: latest['statistics'].subscriberCount,
             publishDate: publishedAt,
             update: updatedAt,
             agency: channel.agency,
@@ -47,28 +47,28 @@ const List = () => {
     getStatistics({ statistics, channels });
   }, [statistics, channels]);
 
-  const dataNiji = dataStatistics.filter((data) => data.agency === "nijisanji");
-  const dataHolo = dataStatistics.filter((data) => data.agency === "hololive");
+  const dataNiji = dataStatistics.filter((data) => data.agency === 'nijisanji');
+  const dataHolo = dataStatistics.filter((data) => data.agency === 'hololive');
 
   const dataNijisanji = useMemo(() => dataNiji, [dataNiji]);
   const dataHololive = useMemo(() => dataHolo, [dataHolo]);
   const columns = useMemo(
     () => [
       {
-        Header: "Youtube Channel",
-        accessor: "channelName",
+        Header: 'Youtube Channel',
+        accessor: 'channelName',
       },
       {
-        Header: "Subscribers",
-        accessor: "subscriber",
+        Header: 'Subscribers',
+        accessor: 'subscriber',
       },
       {
-        Header: "Debuted At",
-        accessor: "publishDate",
+        Header: 'Debuted At',
+        accessor: 'publishDate',
       },
       {
-        Header: "Updated At",
-        accessor: "update",
+        Header: 'Updated At',
+        accessor: 'update',
       },
     ],
     []

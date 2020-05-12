@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import VideoList from "../videos/VideoList";
-import Loadingbar from "../layout/Loadingbar";
-import { VideoContext } from "../../contexts/VideoContext";
-import "./Home.style.scss";
+import React, { useState, useEffect, useContext } from 'react';
+import VideoList from '../videos/VideoList';
+import Loadingbar from '../layout/Loadingbar';
+import { VideoContext } from '../../contexts/VideoContext';
+import './Home.style.scss';
 
 const Home = () => {
   const { videos } = useContext(VideoContext);
@@ -16,13 +16,13 @@ const Home = () => {
 
   return (
     <>
-      {loading ? <Loadingbar /> : ""}
+      {loading ? <Loadingbar /> : ''}
       <div className="container">
         <div className="content">
           <h5>Currently Livestreaming</h5>
           <div className="content-video">
             {loading ? (
-              ""
+              ''
             ) : videos?.liveVideos.length ? (
               videos?.liveVideos.map((video) => {
                 return (
@@ -49,7 +49,7 @@ const Home = () => {
           <h5>Upcoming</h5>
           <div className="content-video">
             {loading ? (
-              ""
+              ''
             ) : videos?.upcomingVideos.length ? (
               videos?.upcomingVideos.map((video) => {
                 return (
@@ -76,7 +76,7 @@ const Home = () => {
           <h5>Latest Uploads</h5>
           <div className="content-video">
             {loading ? (
-              ""
+              ''
             ) : videos?.completedVideos.length ? (
               videos?.completedVideos.map((video) => {
                 return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Sidebar.style.css';
+import './Sidebar.style.scss';
 
 const Sidebar = () => {
   return (
@@ -22,6 +22,12 @@ const Sidebar = () => {
           <span className="tooltip">Vtuber List</span>
           <Link to="/vtubers" className="sidebar-link">
             <i className="icon material-icons">group</i>
+          </Link>
+        </li>
+        <li className="sidebar-item">
+          <span className="tooltip">Settings</span>
+          <Link to="/settings" className="sidebar-link">
+            <i className="icon material-icons">settings</i>
           </Link>
         </li>
       </ul>

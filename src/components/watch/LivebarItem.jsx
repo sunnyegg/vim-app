@@ -1,5 +1,5 @@
 import React from 'react';
-import './LivebarItem.style.css';
+import './LivebarItem.style.scss';
 
 const LivebarItem = ({
   icon,

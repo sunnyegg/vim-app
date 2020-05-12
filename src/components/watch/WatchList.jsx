@@ -1,5 +1,5 @@
 import React from 'react';
-import './WatchList.style.css';
+import './WatchList.style.scss';
 
 const WatchList = ({ id, layout, watchList }) => {
   const url = `https://www.youtube.com/embed/${id}?autoplay=1` || '';

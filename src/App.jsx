@@ -13,14 +13,14 @@ import VideoContextProvider from './contexts/VideoContext';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(localStorage.getItem('dark'));
-  if (darkMode) {
+  if (darkMode === 'true') {
     document.body.style.backgroundColor = '#292929';
   } else {
     document.body.style.backgroundColor = 'white';
   }
   return (
     <Router>
-      <div className={`App ${darkMode ? 'dark' : ''}`}>
+      <div className={`App ${darkMode === 'true' ? 'dark' : ''}`}>
         <ChannelContextProvider>
           <StatisticsContextProvider>
             <VideoContextProvider>

@@ -24,6 +24,7 @@ const VideoContextProvider = (props) => {
 
         return video;
       } catch (err) {
+        console.log(err.response)
         if (err.response.status === 404) {
           console.info('no videos');
         } else {

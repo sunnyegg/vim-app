@@ -1,6 +1,16 @@
-.list{
+.list {
   margin-top: 1rem;
 }
-.agency-name{
-  margin: 0 0 1em;
+h1 {
+  margin: .5em 0;
+  font-size: 3rem;
+  font-weight: bold;
 }
+.agency-list {
+  margin: 1rem 0;
+}
+.agency-list > .agency-name {
+  margin: 0 0 0.3em;
+  font-size: 2rem;
+}
+

@@ -14,6 +14,7 @@ const ChannelContextProvider = (props) => {
         setChannels(dataChannels.data.data);
       }
     } catch (err) {
+      console.log('error')
       console.error(err);
     }
   };

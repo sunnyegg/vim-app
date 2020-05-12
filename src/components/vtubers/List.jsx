@@ -83,16 +83,17 @@ const List = () => {
         </div>
       ) : (
         <div className="container">
+          <h1>Vtuber List</h1>
           <div className="agency-list">
-            <h1 class="agency-name">Nijisanji</h1>
+            <h2 class="agency-name">Nijisanji</h2>
             <Table columns={columns} data={dataNijisanji} />
           </div>
           <div className="agency-list">
-            <h1 class="agency-name">Hololive</h1>
+            <h2 class="agency-name">Hololive</h2>
             <Table columns={columns} data={dataHololive} />
           </div>
           <div className="agency-list">
-            <h1 class="agency-name">Indie</h1>
+            <h2 class="agency-name">Indie</h2>
             <p>Coming soon...</p>
           </div>
         </div>

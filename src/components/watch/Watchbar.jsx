@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LivebarItem from './LivebarItem';
-import './Watchbar.style.css';
+import './Watchbar.style.scss';
 
 const Watchbar = ({
   addWatchList,
@@ -79,7 +79,7 @@ const Watchbar = ({
 
   return (
     <>
-      <div className="watchbar grey lighten-3">
+      <div className="watchbar lighten-3">
         <div
           className={videos.length < 12 ? 'livebar' : 'livebar scroll-vertical'}
         >

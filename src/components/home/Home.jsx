@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import VideoList from '../videos/VideoList';
 import Loadingbar from '../layout/Loadingbar';
 import { VideoContext } from '../../contexts/VideoContext';
-import './Home.style.css';
+import './Home.style.scss';
 
 const Home = () => {
   const { videos } = useContext(VideoContext);
@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       {loading ? <Loadingbar /> : ''}
-      <div className="container">
+      <div className="vim-container">
         <div className="content">
           <h5>Currently Livestreaming</h5>
           <div className="content-video">

@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .card
   .card-action
   a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
@@ -86,4 +88,15 @@
   height: 250px !important;
   margin: 0 1rem 1rem 0;
   width: 280px !important;
+}
+
+.dark {
+  .card-action {
+    background-color: darken($darkBackground, 5%);
+    a,
+    span,
+    p {
+      color: $darkTextColor;
+    }
+  }
 }

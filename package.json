@@ -1,6 +1,6 @@
 {
   "name": "vim-app",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "dayjs": "^1.8.26",
     "dotenv": "^8.2.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
@@ -19,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:check": "prettier --config ./.prettierrc --check src/**/*.js*",
+    "lint:write": "prettier --config ./.prettierrc --write src/**/*.js*"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
   }
 }

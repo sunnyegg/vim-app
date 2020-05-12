@@ -10,7 +10,7 @@ Website VIM: https://vim-app.surge.sh/
 
 VIM adalah website yang fokus untuk memonitor vtuber-vtuber yg ada di Indonesia, baik yg beragensi maupun independen, agar ada satu wadah yg bisa mengekspos semua vtuber yg ada di Indonesia.
 
-Projek ini masih ada di tahap ALPHA (v0.3.0), sehingga bugs dan error lainnya akan sering dijumpai.
+Projek ini masih ada di tahap ALPHA (v0.3.2), sehingga bugs dan error lainnya akan sering dijumpai.
 
 ---
 

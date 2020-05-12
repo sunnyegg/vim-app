@@ -3,7 +3,7 @@ import Loadingbar from '../layout/Loadingbar';
 import Watchbar from './Watchbar';
 import WatchList from './WatchList';
 import { VideoContext } from '../../contexts/VideoContext';
-import './Watch.style.css';
+import './Watch.style.scss';
 
 const Watch = () => {
   const { videos } = useContext(VideoContext);

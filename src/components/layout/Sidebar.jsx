@@ -30,12 +30,6 @@ const Sidebar = () => {
             <i className="icon material-icons">settings</i>
           </Link>
         </li>
-        {/* <li className="sidebar-item">
-          <span className="tooltip">About</span>
-          <Link to="/about" className="sidebar-link">
-            <i className="icon material-icons">info_outline</i>
-          </Link>
-        </li> */}
       </ul>
     </div>
   );

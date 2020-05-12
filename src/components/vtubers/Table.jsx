@@ -47,7 +47,6 @@ const Table = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-      <span>Showing {rows.length} data.</span>
     </>
   );
 };

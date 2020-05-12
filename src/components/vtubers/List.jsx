@@ -30,7 +30,7 @@ const List = () => {
             subscriber: latest["statistics"].subscriberCount,
             publishDate: publishedAt,
             update: updatedAt,
-            agency: <span className={channel.agency}>{channel.agency}</span>
+            agency: channel.agency,
           };
         }
       }
@@ -47,19 +47,16 @@ const List = () => {
     getStatistics({ statistics, channels });
   }, [statistics, channels]);
 
-  console.log(dataStatistics);
+  const dataNiji = dataStatistics.filter((data) => data.agency === "nijisanji");
+  const dataHolo = dataStatistics.filter((data) => data.agency === "hololive");
 
-  const data = useMemo(() => dataStatistics, [dataStatistics]);
-
+  const dataNijisanji = useMemo(() => dataNiji, [dataNiji]);
+  const dataHololive = useMemo(() => dataHolo, [dataHolo]);
   const columns = useMemo(
     () => [
       {
         Header: "Youtube Channel",
         accessor: "channelName",
-      },
-      {
-        Header: "Agency",
-        accessor: "agency",
       },
       {
         Header: "Subscribers",
@@ -85,8 +82,19 @@ const List = () => {
           <div className="container list">Fetching Vtuber lists...</div>
         </div>
       ) : (
-        <div className="container list">
-          <Table columns={columns} data={data} />
+        <div className="container">
+          <div className="agency-list">
+            <h1 class="agency-name">Nijisanji</h1>
+            <Table columns={columns} data={dataNijisanji} />
+          </div>
+          <div className="agency-list">
+            <h1 class="agency-name">Hololive</h1>
+            <Table columns={columns} data={dataHololive} />
+          </div>
+          <div className="agency-list">
+            <h1 class="agency-name">Indie</h1>
+            <p>Coming soon...</p>
+          </div>
         </div>
       )}
     </>

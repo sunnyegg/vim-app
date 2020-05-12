@@ -27,7 +27,10 @@ const List = () => {
           const updatedAt = dayjs(JSON.parse(latest['date'])).format('LL');
           output = {
             channelName: channel.channel.channelName,
-            subscriber: latest['statistics'].subscriberCount,
+            subscriber: parseInt(
+              latest['statistics'].subscriberCount,
+              0
+            ).toLocaleString('id-ID'),
             publishDate: publishedAt,
             update: updatedAt,
             agency: channel.agency,
@@ -63,7 +66,7 @@ const List = () => {
         accessor: 'subscriber',
       },
       {
-        Header: 'Debuted At',
+        Header: 'Channel Published Date',
         accessor: 'publishDate',
       },
       {
@@ -79,10 +82,10 @@ const List = () => {
       {loading ? (
         <div>
           <Loadingbar />
-          <div className="container list">Fetching Vtuber lists...</div>
+          <div className="vim-container">Fetching Vtuber lists...</div>
         </div>
       ) : (
-        <div className="container">
+        <div className="vim-container">
           <h1>Vtuber List</h1>
           <div className="agency-list">
             <h2 className="agency-name">Nijisanji</h2>
@@ -91,6 +94,10 @@ const List = () => {
           <div className="agency-list">
             <h2 className="agency-name">Hololive</h2>
             <Table columns={columns} data={dataHololive} />
+          </div>
+          <div className="agency-list">
+            <h2 className="agency-name">Mahapanca</h2>
+            <p>Coming soon...</p>
           </div>
           <div className="agency-list">
             <h2 className="agency-name">Indie</h2>

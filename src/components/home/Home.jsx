@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       {loading ? <Loadingbar /> : ''}
-      <div className="container">
+      <div className="vim-container">
         <div className="content">
           <h5>Currently Livestreaming</h5>
           <div className="content-video">

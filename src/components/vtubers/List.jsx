@@ -93,7 +93,7 @@ const List = () => {
             <Table columns={columns} data={dataHololive} />
           </div>
           <div className="agency-list">
-            <h2 class="agency-name">Indie</h2>
+            <h2 className="agency-name">Indie</h2>
             <p>Coming soon...</p>
           </div>
         </div>

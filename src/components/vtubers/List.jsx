@@ -5,7 +5,7 @@ import Table from "./Table";
 import Loadingbar from "../layout/Loadingbar";
 import { ChannelContext } from "../../contexts/ChannelContext";
 import { StatisticsContext } from "../../contexts/StatisticsContext";
-import "./List.style.css";
+import "./List.style.scss";
 
 dayjs.extend(localizedFormat);
 

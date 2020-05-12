@@ -105,7 +105,7 @@ const VideoContextProvider = (props) => {
     });
 
     const resultComplete = await Promise.all(completedVideos).then((item) => {
-      return flatSortFilter(item).splice(0, 30);
+      return flatSortFilter(item).splice(0, 8);
     });
 
     const allVideos = {

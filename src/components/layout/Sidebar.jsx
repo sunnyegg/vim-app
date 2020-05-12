@@ -19,7 +19,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="sidebar-item">
-          <span className="tooltip">Vtubers</span>
+          <span className="tooltip">Vtuber List</span>
           <Link to="/vtubers" className="sidebar-link">
             <i className="icon material-icons">group</i>
           </Link>

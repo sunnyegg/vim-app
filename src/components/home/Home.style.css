@@ -3,17 +3,6 @@
   .content-video {
     justify-content: center;
   }
-
-  .home {
-    margin: 1rem 1rem 5rem 1rem;
-  }
-}
-
-/* desktop */
-@media only screen and (min-width: 600px) {
-  .home {
-    margin: 1rem 1rem 1rem 6rem;
-  }
 }
 
 .content {
@@ -31,4 +20,21 @@
 
 .home {
   transition: 300ms;
+}
+
+.nijisanji,
+.hololive,
+.indie {
+  padding: 3px 10px;
+  color: white;
+  border-radius: 3px;
+}
+.nijisanji {
+  background-color: #2d4b70;
+}
+.hololive {
+  background-color: #5bd7e6;
+}
+.indie {
+  background-color: black;
 }

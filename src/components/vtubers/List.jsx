@@ -89,7 +89,7 @@ const List = () => {
             <Table columns={columns} data={dataNijisanji} />
           </div>
           <div className="agency-list">
-            <h2 class="agency-name">Hololive</h2>
+            <h2 className="agency-name">Hololive</h2>
             <Table columns={columns} data={dataHololive} />
           </div>
           <div className="agency-list">

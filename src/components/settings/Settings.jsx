@@ -5,12 +5,12 @@ import './Settings.style.scss';
 const Settings = (props) => {
   const { setDark } = props;
   const changeTheme = () => {
-    if (localStorage.getItem('dark') === 'true') {
+    if (localStorage.getItem('dark')) {
       localStorage.setItem('dark', false);
-      setDark('false');
+      setDark(false);
     } else {
       localStorage.setItem('dark', true);
-      setDark('true');
+      setDark(true);
     }
   };
 
@@ -24,7 +24,7 @@ const Settings = (props) => {
             type="checkbox"
             name="dark"
             onChange={() => changeTheme()}
-            checked={localStorage.getItem('dark') === 'true'}
+            checked={localStorage.getItem('dark')}
           />
           <span className="lever"></span>
         </label>

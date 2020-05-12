@@ -85,7 +85,7 @@ const List = () => {
         <div className="container">
           <h1>Vtuber List</h1>
           <div className="agency-list">
-            <h2 class="agency-name">Nijisanji</h2>
+            <h2 className="agency-name">Nijisanji</h2>
             <Table columns={columns} data={dataNijisanji} />
           </div>
           <div className="agency-list">

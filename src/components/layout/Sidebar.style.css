@@ -99,10 +99,10 @@
   cursor: default;
   left: 30%;
   opacity: 0;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem 0.5rem;
   position: absolute;
-  scale: 0;
   text-align: center;
   top: 30%;
   transition: all 300ms;
+  width: 100px;
 }

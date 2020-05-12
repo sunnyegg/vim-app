@@ -17,9 +17,9 @@ const Home = () => {
   return (
     <>
       {loading ? <Loadingbar /> : ''}
-      <div className="home">
+      <div className="container">
         <div className="content">
-          <h5>Live</h5>
+          <h5>Currently Livestreaming</h5>
           <div className="content-video">
             {loading ? (
               ''
@@ -41,7 +41,7 @@ const Home = () => {
                 );
               })
             ) : (
-              <p>No videos...</p>
+              <p>No Current Stream...</p>
             )}
           </div>
         </div>
@@ -68,7 +68,7 @@ const Home = () => {
                 );
               })
             ) : (
-              <p>No videos...</p>
+              <p>No Upcoming Stream...</p>
             )}
           </div>
         </div>

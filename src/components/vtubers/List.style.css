@@ -1,12 +1,16 @@
-@media only screen and (max-width: 600px) {
-  .list {
-    margin: 1rem 1rem 5rem 1rem;
-  }
+.list {
+  margin-top: 1rem;
+}
+h1 {
+  margin: .5em 0;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.agency-list {
+  margin: 1rem 0;
+}
+.agency-list > .agency-name {
+  margin: 0 0 0.3em;
+  font-size: 2rem;
 }
 
-/* desktop */
-@media only screen and (min-width: 600px) {
-  .list {
-    margin: 1rem 1rem 1rem 6rem;
-  }
-}

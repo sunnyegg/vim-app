@@ -48,3 +48,16 @@ body {
   animation: pulse 1s infinite;
   transition: all 300ms;
 }
+/* mobile */
+@media only screen and (max-width: 600px) {
+  .container {
+    margin: 1rem 1rem 5rem 1rem;
+  }
+}
+
+/* desktop */
+/* @media only screen and (min-width: 600px) {
+  .container {
+    margin-left: 6rem;
+  }
+} */

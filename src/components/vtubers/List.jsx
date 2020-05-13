@@ -34,6 +34,8 @@ const List = () => {
             publishDate: publishedAt,
             update: updatedAt,
             agency: channel.agency,
+            channelIcon: channel.channel.channelIcon,
+            id: channel.id,
           };
         }
       }
@@ -52,30 +54,43 @@ const List = () => {
 
   const dataNiji = dataStatistics.filter((data) => data.agency === 'nijisanji');
   const dataHolo = dataStatistics.filter((data) => data.agency === 'hololive');
+  const dataMaha = dataStatistics.filter((data) => data.agency === 'mahapanca');
 
   const dataNijisanji = useMemo(() => dataNiji, [dataNiji]);
   const dataHololive = useMemo(() => dataHolo, [dataHolo]);
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'Youtube Channel',
-        accessor: 'channelName',
-      },
-      {
-        Header: 'Subscribers',
-        accessor: 'subscriber',
-      },
-      {
-        Header: 'Channel Published Date',
-        accessor: 'publishDate',
-      },
-      {
-        Header: 'Updated At',
-        accessor: 'update',
-      },
-    ],
-    []
-  );
+  const dataMahapanca = useMemo(() => dataMaha, [dataMaha]);
+  const columns = [
+    {
+      Header: ' ',
+      accessor: (a) => (
+        <img src={a.channelIcon} className="table-image" alt={a.channelName} />
+      ),
+    },
+    {
+      Header: 'Youtube Channel',
+      accessor: 'channelName',
+    },
+    {
+      Header: 'Subscribers',
+      accessor: 'subscriber',
+    },
+    {
+      Header: 'Channel Published Date',
+      accessor: 'publishDate',
+    },
+    {
+      Header: '  ',
+      accessor: (a) => (
+        <a
+          href={`https://youtube.com/channel/${a.id}?sub_confirmation=1`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Subscribe
+        </a>
+      ),
+    },
+  ];
 
   return (
     <>
@@ -85,7 +100,7 @@ const List = () => {
           <div className="vim-container">Fetching Vtuber lists...</div>
         </div>
       ) : (
-        <div className="vim-container">
+        <div className="vim-container list">
           <h1>Vtuber List</h1>
           <div className="agency-list">
             <h2 className="agency-name">Nijisanji</h2>
@@ -97,7 +112,7 @@ const List = () => {
           </div>
           <div className="agency-list">
             <h2 className="agency-name">Mahapanca</h2>
-            <p>Coming soon...</p>
+            <Table columns={columns} data={dataMahapanca} />
           </div>
           <div className="agency-list">
             <h2 className="agency-name">Indie</h2>

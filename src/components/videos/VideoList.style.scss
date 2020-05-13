@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import '../../styles/variables.scss';
 
 .card
   .card-action
@@ -88,6 +88,25 @@
   height: 250px !important;
   margin: 0 1rem 1rem 0;
   width: 280px !important;
+}
+
+.nijisanji,
+.hololive,
+.indie,
+.mahapanca {
+  padding: 3px 10px;
+  color: white;
+  border-radius: 3px;
+}
+.nijisanji {
+  background-color: #2d4b70;
+}
+.hololive {
+  background-color: #27c6fc;
+}
+.mahapanca,
+.indie {
+  background-color: black;
 }
 
 .dark {

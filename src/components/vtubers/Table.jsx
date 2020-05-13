@@ -10,7 +10,6 @@ const Table = ({ columns, data }) => {
     rows,
     prepareRow,
   } = useTable({ columns, data }, useSortBy);
-
   return (
     <>
       <table {...getTableProps()}>

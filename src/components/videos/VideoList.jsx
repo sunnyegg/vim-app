@@ -59,8 +59,8 @@ const VideoList = (props) => {
           </a>
         )}
 
-        <span className={`card-title tag ${props.agency || 'indie'}`}>
-          {props.agency || 'No Agency'}
+        <span className={`card-title tag ${props.agency}`}>
+          {props.agency.charAt(0).toUpperCase() + props.agency.slice(1)}
         </span>
       </div>
       <div className="card-action">

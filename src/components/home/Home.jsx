@@ -9,8 +9,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (videos) {
-      setLoading((loading) => !loading);
+    if (videos.completedVideos?.length) {
+      setLoading(false);
     }
   }, [videos]);
 
@@ -23,8 +23,8 @@ const Home = () => {
           <div className="content-video">
             {loading ? (
               ''
-            ) : videos?.liveVideos.length ? (
-              videos?.liveVideos.map((video) => {
+            ) : videos?.liveVideos?.length ? (
+              videos?.liveVideos?.map((video) => {
                 return (
                   <VideoList
                     key={video.videoId}
@@ -50,8 +50,8 @@ const Home = () => {
           <div className="content-video">
             {loading ? (
               ''
-            ) : videos?.upcomingVideos.length ? (
-              videos?.upcomingVideos.map((video) => {
+            ) : videos?.upcomingVideos?.length ? (
+              videos?.upcomingVideos?.map((video) => {
                 return (
                   <VideoList
                     key={video.videoId}
@@ -77,8 +77,8 @@ const Home = () => {
           <div className="content-video">
             {loading ? (
               ''
-            ) : videos?.completedVideos.length ? (
-              videos?.completedVideos.map((video) => {
+            ) : videos?.completedVideos?.length ? (
+              videos?.completedVideos?.map((video) => {
                 return (
                   <VideoList
                     key={video.videoId}

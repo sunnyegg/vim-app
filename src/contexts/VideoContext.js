@@ -7,32 +7,19 @@ const URL = process.env.REACT_APP_API_URL;
 
 const VideoContextProvider = (props) => {
   const { channels } = useContext(ChannelContext);
+  const [videoData, setVideoData] = useState([]);
   const [videos, setVideos] = useState({
     liveVideos: [],
     completedVideos: [],
     upcomingVideos: [],
   });
 
-  const getVideos = async (channelsData) => {
-    const getAll = async (api, channel) => {
-      try {
-        const video = await axios.get(`${api}/api/v1/videos/${channel.id}`);
+  const getVideos = async (channelsData, videos) => {
+    let liveVideos;
+    let upcomingVideos;
+    let completedVideos;
 
-        if (!video) {
-          return null;
-        }
-
-        return video;
-      } catch (err) {
-        if (err.response.status && err.response.status === 404) {
-          console.info('no videos');
-        } else {
-          console.error(err);
-        }
-      }
-    };
-
-    const restructure = async (videoData, channelData, type) => {
+    const restructure = (videoData, channelData, type) => {
       const imgReg = /hqdefault.*/gm;
       const dateNow = new Date().toISOString();
 
@@ -47,79 +34,65 @@ const VideoContextProvider = (props) => {
           }
         }
 
-        return videoData.filter((video) => video.eventType === type);
+        const filtered = videoData.filter((video) => video.eventType === type);
+        return sortFilter(filtered);
       }
 
       return [];
     };
 
-    const flatSortFilter = (item) => {
-      return item
-        .flat(1)
-        .sort((a, b) => {
-          if (a.eventType === 'upcoming') {
-            return new Date(a.date) - new Date(b.date);
-          }
+    const sortFilter = (item) => {
+      return [
+        ...new Set(
+          item.sort((a, b) => {
+            if (a.eventType === 'upcoming') {
+              return new Date(a.date) - new Date(b.date);
+            }
 
-          return new Date(b.date) - new Date(a.date);
-        })
-        .filter((val) => val);
+            return new Date(b.date) - new Date(a.date);
+          })
+        ),
+      ];
     };
 
-    const liveVideos = channelsData.map(async (channel) => {
-      const videos = await getAll(URL, channel);
+    for (const channel of channelsData) {
+      liveVideos = restructure(videos, channel, 'live');
+    }
 
-      if (!videos) {
-        return [];
-      }
+    for (const channel of channelsData) {
+      upcomingVideos = restructure(videos, channel, 'upcoming');
+    }
 
-      return restructure(videos.data.data, channel, 'live');
-    });
-
-    const upcomingVideos = channelsData.map(async (channel) => {
-      const videos = await getAll(URL, channel);
-
-      if (!videos) {
-        return [];
-      }
-
-      return restructure(videos.data.data, channel, 'upcoming');
-    });
-
-    const completedVideos = channelsData.map(async (channel) => {
-      const videos = await getAll(URL, channel);
-
-      if (!videos) {
-        return [];
-      }
-
-      return restructure(videos.data.data, channel, 'completed');
-    });
-
-    const resultLive = await Promise.all(liveVideos).then((item) => {
-      return flatSortFilter(item);
-    });
-
-    const resultUpcoming = await Promise.all(upcomingVideos).then((item) => {
-      return flatSortFilter(item);
-    });
-
-    const resultComplete = await Promise.all(completedVideos).then((item) => {
-      return flatSortFilter(item).splice(0, 30);
-    });
+    for (const channel of channelsData) {
+      completedVideos = restructure(videos, channel, 'completed');
+    }
 
     const allVideos = {
-      liveVideos: resultLive,
-      upcomingVideos: resultUpcoming,
-      completedVideos: resultComplete,
+      liveVideos,
+      upcomingVideos,
+      completedVideos,
     };
 
     setVideos(allVideos);
   };
 
+  const getAll = async () => {
+    const videos = await axios.get(`${URL}/api/v1/videos`).catch((err) => {
+      console.error(err);
+    });
+
+    if (videos) {
+      setVideoData(videos.data.data);
+    }
+  };
+
   useEffect(() => {
-    getVideos(channels);
-  }, [channels]);
+    getAll();
+  }, []);
+
+  useEffect(() => {
+    getVideos(channels, videoData);
+  }, [channels, videoData]);
 
   return (
     <VideoContext.Provider value={{ videos }}>

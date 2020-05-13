@@ -20,7 +20,6 @@ const List = () => {
       let output;
       const latest = allData[allData.length - 1];
       for (const channel of data.channels) {
-        console.log(channel);
         if (channel.id === latest['channel']) {
           const publishedAt = dayjs(channel.channel.channelPublishedAt).format(
             'LL'
@@ -63,7 +62,9 @@ const List = () => {
   const columns = [
     {
       Header: ' ',
-      accessor: (a) => <img src={a.channelIcon} className="table-image" alt={a.channelName} />,
+      accessor: (a) => (
+        <img src={a.channelIcon} className="table-image" alt={a.channelName} />
+      ),
     },
     {
       Header: 'Youtube Channel',
@@ -82,7 +83,8 @@ const List = () => {
       accessor: (a) => (
         <a
           href={`https://youtube.com/channel/${a.id}?sub_confirmation=1`}
-          target="_blank" rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Subscribe
         </a>

@@ -3,18 +3,29 @@
 @media only screen and (max-width: 600px) {
   table {
     font-size: 12px;
+    th:first-child,
+    td:first-child {
+      display: none;
+    }
   }
 }
 
 /* desktop */
 @media only screen and (min-width: 600px) {
   table {
-    font-size: 14px;
+    font-size: 17px;
   }
 }
 
 table {
   border: 1px solid black;
+  th:first-child {
+    width: 75px;
+  }
+}
+
+.table-image {
+  width: 75px;
 }
 
 table tr:last-child td {

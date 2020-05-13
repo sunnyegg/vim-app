@@ -63,7 +63,9 @@ const List = () => {
   const columns = [
     {
       Header: ' ',
-      accessor: (a) => <img src={a.channelIcon} className="table-image" alt={a.channelName} />,
+      accessor: (a) => (
+        <img src={a.channelIcon} className="table-image" alt={a.channelName} />
+      ),
     },
     {
       Header: 'Youtube Channel',
@@ -82,7 +84,8 @@ const List = () => {
       accessor: (a) => (
         <a
           href={`https://youtube.com/channel/${a.id}?sub_confirmation=1`}
-          target="_blank" rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Subscribe
         </a>

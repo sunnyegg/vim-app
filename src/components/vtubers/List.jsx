@@ -18,33 +18,33 @@ const List = () => {
   const getStatistics = (data) => {
     const result = data.statistics.map((allData) => {
       let output;
-      const latest = allData[allData.length - 1];
+
       for (const channel of data.channels) {
-        if (channel.id === latest['channel']) {
+        if (channel.id === allData['channel']) {
           const publishedAt = dayjs(channel.channel.channelPublishedAt).format(
             'LL'
           );
-          const updatedAt = dayjs(JSON.parse(latest['date'])).format('LL');
+
           output = {
             channelName: channel.channel.channelName,
             subscriber: parseInt(
-              latest['statistics'].subscriberCount,
+              allData['statistics'].subscriberCount,
               0
             ).toLocaleString('id-ID'),
             publishDate: publishedAt,
-            update: updatedAt,
             agency: channel.agency,
             channelIcon: channel.channel.channelIcon,
             id: channel.id,
           };
         }
       }
+
       return output;
     });
 
     if (result.length) {
       setDataStatistics(result.flat(1));
-      setLoading((loading) => !loading);
+      setLoading(false);
     }
   };
 

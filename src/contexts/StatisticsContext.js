@@ -1,33 +1,27 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { ChannelContext } from './ChannelContext';
 
 export const StatisticsContext = createContext();
 const URL = process.env.REACT_APP_API_URL;
 
 const StatisticsContextProvider = (props) => {
-  const { channels } = useContext(ChannelContext);
   const [statistics, setStatistics] = useState([]);
 
-  const getStatistics = async (channelsData) => {
-    try {
-      const dataStatistics = channelsData.map(async (vtuber) => {
-        const getData = await axios.get(
-          `${URL}/api/v1/statistics/${vtuber.id}`
-        );
-        return getData.data.data;
+  const getStatistics = async () => {
+    const dataStatistics = await axios
+      .get(`${URL}/api/v1/statistics`)
+      .catch((err) => {
+        console.error(err);
       });
 
-      const results = await Promise.all(dataStatistics);
-      setStatistics(results);
-    } catch (err) {
-      console.error(err);
+    if (dataStatistics) {
+      setStatistics(dataStatistics.data.data);
     }
   };
 
   useEffect(() => {
-    getStatistics(channels);
-  }, [channels]);
+    getStatistics();
+  }, []);
 
   return (
     <StatisticsContext.Provider value={{ statistics }}>

@@ -1,0 +1,13 @@
+:root {
+    --vtubers-cardlist-card-width: calc((100vw - 36rem)/5)l;
+}
+
+.vtubers-cardlist-card{
+    width: var(--vtubers-cardlist-card-width);
+}
+
+.vtubers-cardlist-card-image{
+    width: calc(var(--vtubers-cardlist-card-width)/2);
+    height: calc(var(--vtubers-cardlist-card-width)/2);
+    border-radius: calc(var(--vtubers-cardlist-card-width)/4);
+}

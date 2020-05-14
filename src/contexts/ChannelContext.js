@@ -6,15 +6,20 @@ const URL = process.env.REACT_APP_API_URL;
 
 const ChannelContextProvider = (props) => {
   const [channels, setChannels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const getChannels = async () => {
-    try {
-      const dataChannels = await axios.get(`${URL}/api/v1/channels`);
-      if (dataChannels) {
-        setChannels(dataChannels.data.data);
-      }
-    } catch (err) {
-      console.error(err);
+    const dataChannels = await axios
+      .get(`${URL}/api/v1/channels`)
+      .catch((err) => {
+        console.error(err);
+        setError(true);
+      });
+
+    if (dataChannels) {
+      setChannels(dataChannels.data.data);
+      setLoading(false);
     }
   };
 
@@ -22,7 +27,7 @@ const ChannelContextProvider = (props) => {
     getChannels();
   }, []);
   return (
-    <ChannelContext.Provider value={{ channels }}>
+    <ChannelContext.Provider value={{ channels, loading, error }}>
       {props.children}
     </ChannelContext.Provider>
   );

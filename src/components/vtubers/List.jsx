@@ -10,10 +10,9 @@ import './List.style.scss';
 dayjs.extend(localizedFormat);
 
 const List = () => {
-  const { channels } = useContext(ChannelContext);
+  const { channels, loading } = useContext(ChannelContext);
   const { statistics } = useContext(StatisticsContext);
   const [dataStatistics, setDataStatistics] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const getStatistics = (data) => {
     const result = data.statistics.map((allData) => {
@@ -44,7 +43,6 @@ const List = () => {
 
     if (result.length) {
       setDataStatistics(result.flat(1));
-      setLoading(false);
     }
   };
 
@@ -52,9 +50,13 @@ const List = () => {
     getStatistics({ statistics, channels });
   }, [statistics, channels]);
 
-  const dataNiji = dataStatistics.filter((data) => data.agency === 'nijisanji');
-  const dataHolo = dataStatistics.filter((data) => data.agency === 'hololive');
-  const dataMaha = dataStatistics.filter((data) => data.agency === 'mahapanca');
+  const dataNiji = dataStatistics.filter(
+    (data) => data?.agency === 'nijisanji'
+  );
+  const dataHolo = dataStatistics.filter((data) => data?.agency === 'hololive');
+  const dataMaha = dataStatistics.filter(
+    (data) => data?.agency === 'mahapanca'
+  );
 
   const dataNijisanji = useMemo(() => dataNiji, [dataNiji]);
   const dataHololive = useMemo(() => dataHolo, [dataHolo]);

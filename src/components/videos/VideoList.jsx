@@ -31,6 +31,7 @@ const VideoList = (props) => {
 
   return (
     <div
+      ref={props.lastItem}
       className={
         props.type === 'live'
           ? 'card small video-list animation-pulse'

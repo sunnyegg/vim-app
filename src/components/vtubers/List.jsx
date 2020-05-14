@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useMemo } from 'react';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import Table from './Table';
+import CardList from './CardList';
 import Loadingbar from '../layout/Loadingbar';
 import { ChannelContext } from '../../contexts/ChannelContext';
 import { StatisticsContext } from '../../contexts/StatisticsContext';
@@ -106,15 +107,15 @@ const List = () => {
           <h1>Vtuber List</h1>
           <div className="agency-list">
             <h2 className="agency-name">Nijisanji</h2>
-            <Table columns={columns} data={dataNijisanji} />
+            <CardList columns={columns} data={dataNijisanji} />
           </div>
           <div className="agency-list">
             <h2 className="agency-name">Hololive</h2>
-            <Table columns={columns} data={dataHololive} />
+            <CardList columns={columns} data={dataHololive} />
           </div>
           <div className="agency-list">
             <h2 className="agency-name">Mahapanca</h2>
-            <Table columns={columns} data={dataMahapanca} />
+            <CardList columns={columns} data={dataMahapanca} />
           </div>
           <div className="agency-list">
             <h2 className="agency-name">Indie</h2>

@@ -15,6 +15,16 @@ const Table = ({ columns, data }) => {
                 <div className="vtubers-cardlist-card-debut">{vtuberdata.publishDate}</div>
                 <div className="vtubers-cardlist-card-subtitle">Subscribers</div>
                 <div className="vtubers-cardlist-card-debut">{vtuberdata.subscriber}</div>
+                <div className="vtubers-cardlist-card-subscribebuttoncontainer">
+                  <a
+                    href={`https://youtube.com/channel/${vtuberdata.id}?sub_confirmation=1`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="vtubers-cardlist-card-subscribebutton"
+                  >
+                    Subscribe
+                  </a>
+                </div>
               </div>
           )
       }

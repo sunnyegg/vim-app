@@ -25,9 +25,14 @@ const VideoContextProvider = (props) => {
 
       if (videoData.length) {
         for (const item of videoData) {
-          item.thumbnail = item.thumbnail.replace(imgReg, 'maxresdefault.jpg');
-          item['channelIcon'] = channelData.channel.channelIcon;
-          item['agency'] = channelData.agency;
+          if (item.channelId === channelData.id) {
+            item.thumbnail = item.thumbnail.replace(
+              imgReg,
+              'maxresdefault.jpg'
+            );
+            item['channelIcon'] = channelData.channel.channelIcon;
+            item['agency'] = channelData.agency;
+          }
 
           if (item.eventType === 'upcoming' && dateNow >= item.date) {
             item.eventType = 'live';
@@ -57,13 +62,7 @@ const VideoContextProvider = (props) => {
 
     for (const channel of channelsData) {
       liveVideos = restructure(videos, channel, 'live');
-    }
-
-    for (const channel of channelsData) {
       upcomingVideos = restructure(videos, channel, 'upcoming');
-    }
-
-    for (const channel of channelsData) {
       completedVideos = restructure(videos, channel, 'completed');
     }
 

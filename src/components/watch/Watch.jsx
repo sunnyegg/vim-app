@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Loadingbar from '../layout/Loadingbar';
 import Watchbar from './Watchbar';
 import WatchList from './WatchList';
@@ -6,9 +6,8 @@ import { VideoContext } from '../../contexts/VideoContext';
 import './Watch.style.scss';
 
 const Watch = () => {
-  const { videos } = useContext(VideoContext);
+  const { videos, loading } = useContext(VideoContext);
   const userLayout = localStorage.getItem('layout') || 'small';
-  const [loading, setLoading] = useState(true);
   const [watchList, setWatchList] = useState([]);
   const [layout, setLayout] = useState(userLayout);
 
@@ -20,15 +19,25 @@ const Watch = () => {
     if (watchList.length) {
       const filterWatch = filterData([...watchList, id]);
       setWatchList(filterWatch);
+      localStorage.setItem('watchlist', JSON.stringify(filterWatch));
     } else {
       setWatchList([id]);
+      localStorage.setItem('watchlist', JSON.stringify([id]));
     }
   };
 
   const removeWatch = (id) => {
     const newWatch = watchList.filter((val) => val !== id);
     setWatchList(newWatch);
+    localStorage.setItem('watchlist', JSON.stringify(newWatch));
   };
+
+  useEffect(() => {
+    const watchListUser = localStorage.getItem('watchlist');
+    if (watchListUser) {
+      setWatchList(JSON.parse(watchListUser));
+    }
+  }, []);
 
   const changeLayout = () => {
     if (userLayout === 'small') {
@@ -40,12 +49,6 @@ const Watch = () => {
     }
   };
 
-  useEffect(() => {
-    if (videos) {
-      setLoading((loading) => !loading);
-    }
-  }, [videos]);
-
   return (
     <>
       {loading ? <Loadingbar /> : ''}
@@ -56,13 +59,12 @@ const Watch = () => {
         videos={videos?.liveVideos}
         watchList={watchList}
       />
-
       <div className="watch">
         <div className="watch-content left-alignment">
-          {!loading && !videos?.liveVideos.length ? (
+          {!loading && !videos?.liveVideos?.length ? (
             <p>No live videos...</p>
           ) : (
-            watchList.map((videoId) => {
+            watchList?.map((videoId) => {
               return (
                 <WatchList
                   key={videoId}

@@ -81,10 +81,13 @@ const Watchbar = ({
     <>
       <div className="watchbar lighten-3">
         <div
-          className={videos.length < 12 ? 'livebar' : 'livebar scroll-vertical'}
+          className={
+            videos?.length < 12 ? 'livebar' : 'livebar scroll-vertical'
+          }
         >
           <ul className="livebar-content">
-            {videos.map((video) => {
+            {videos?.map((video) => {
+              if (!videos.length) localStorage.removeItem('watchlist');
               return (
                 <LivebarItem
                   key={video.videoId}

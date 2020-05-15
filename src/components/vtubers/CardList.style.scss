@@ -1,0 +1,96 @@
+:root {
+    --vtubers-cardlist-card-wide-width: calc((99vw - 36rem)/4 - 1rem);
+    --vtubers-cardlist-card-width: calc((99vw - 7rem) / 4 - 1rem);
+    --vtubers-cardlist-card-mobile-width: calc((99vw - 3rem) / 2 - 1rem);
+}
+
+.vtubers-cardlist-card{
+    width: var(--vtubers-cardlist-card-width);
+    display: inline-block;
+    text-align: center;
+    margin: .5rem;
+    background-color: white;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.vtubers-cardlist-card-image{
+    width: calc(var(--vtubers-cardlist-card-width));
+    height: calc(var(--vtubers-cardlist-card-width));
+    object-fit: cover;;
+}
+
+.vtubers-cardlist{
+    display:block;
+}
+
+.vtubers-cardlist-card-detail{
+    padding: .5rem .5rem 1.5rem .5rem;
+}
+
+.vtubers-cardlist-card-title{
+    &::-webkit-scrollbar {
+        display: none;
+      }
+    height: 5rem;
+    overflow-x: visible;
+    font-weight: 600;
+}
+
+.vtubers-cardlist-card-subtitle{
+    font-size: .8rem;
+    color: #555555
+}
+
+.vtubers-cardlist-card-subscribebuttoncontainer{
+    margin-top: 1rem;
+}
+
+.vtubers-cardlist-card-subscribebutton{
+    &:hover{
+        color: #0986c5;
+        background-color: rgb(231, 231, 231);
+    }
+    text-transform: uppercase;
+    background-color: #0986c5;
+    color: white;
+    padding: .25rem 1rem;
+    font-weight: 600;
+}
+
+.dark{
+    .vtubers-cardlist-card-subtitle{
+        font-size: .8rem;
+        color: #bbbbbb
+    }
+    .vtubers-cardlist-card{
+        background-color: #1c1c1c;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .vtubers-cardlist-card{
+        width: var(--vtubers-cardlist-card-wide-width);
+    }
+
+    .vtubers-cardlist-card-image{
+        width: calc(var(--vtubers-cardlist-card-wide-width));
+        height: calc(var(--vtubers-cardlist-card-wide-width));
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .vtubers-cardlist-card{
+        width: var(--vtubers-cardlist-card-mobile-width);
+    }
+
+    .vtubers-cardlist-card-image{
+        width: calc(var(--vtubers-cardlist-card-mobile-width));
+        height: calc(var(--vtubers-cardlist-card-mobile-width));
+    }
+}

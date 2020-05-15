@@ -43,6 +43,7 @@ const VideoContextProvider = (props) => {
 
     if (page >= 20) {
       setMaxPage(true);
+      setLoading(false);
     } else {
       const videos = await axios
         .get(`${url}/api/v1/videos?page=${page}`)

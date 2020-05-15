@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Loadingbar from '../layout/Loadingbar';
 import Watchbar from './Watchbar';
 import WatchList from './WatchList';
@@ -19,15 +19,25 @@ const Watch = () => {
     if (watchList.length) {
       const filterWatch = filterData([...watchList, id]);
       setWatchList(filterWatch);
+      localStorage.setItem('watchlist', JSON.stringify(filterWatch));
     } else {
       setWatchList([id]);
+      localStorage.setItem('watchlist', JSON.stringify([id]));
     }
   };
 
   const removeWatch = (id) => {
     const newWatch = watchList.filter((val) => val !== id);
     setWatchList(newWatch);
+    localStorage.setItem('watchlist', JSON.stringify(newWatch));
   };
+
+  useEffect(() => {
+    const watchListUser = localStorage.getItem('watchlist');
+    if (watchListUser) {
+      setWatchList(JSON.parse(watchListUser));
+    }
+  }, []);
 
   const changeLayout = () => {
     if (userLayout === 'small') {

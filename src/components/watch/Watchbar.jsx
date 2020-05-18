@@ -87,7 +87,6 @@ const Watchbar = ({
         >
           <ul className="livebar-content">
             {videos?.map((video) => {
-              if (!videos.length) localStorage.removeItem('watchlist');
               return (
                 <LivebarItem
                   key={video.videoId}

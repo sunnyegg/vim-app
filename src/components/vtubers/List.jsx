@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState, useMemo } from 'react';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import Table from './Table';
 import CardList from './CardList';
 import Loadingbar from '../layout/Loadingbar';
 import { ChannelContext } from '../../contexts/ChannelContext';

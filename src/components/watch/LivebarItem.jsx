@@ -39,7 +39,7 @@ const LivebarItem = ({
         className="animation-pulse vtuber"
         onClick={() => addWatchList(videoId)}
       />
-      {watchList.map((id) => {
+      {watchList?.map((id) => {
         if (id === videoId) {
           return (
             <>

@@ -15,6 +15,23 @@ const Watch = () => {
     return [...new Set(data)];
   };
 
+  const checkLiveVideos = (videosData) => {
+    const watchListUser = localStorage.getItem('watchlist');
+
+    if (watchListUser) {
+      let filtered;
+      const parsed = JSON.parse(watchListUser);
+
+      if (videosData?.liveVideos?.length) {
+        for (const video of videosData.liveVideos) {
+          filtered = parsed.filter((id) => id === video.videoId);
+        }
+      }
+
+      setWatchList(filtered);
+    }
+  };
+
   const addWatchList = (id) => {
     if (watchList.length) {
       const filterWatch = filterData([...watchList, id]);
@@ -33,11 +50,8 @@ const Watch = () => {
   };
 
   useEffect(() => {
-    const watchListUser = localStorage.getItem('watchlist');
-    if (watchListUser) {
-      setWatchList(JSON.parse(watchListUser));
-    }
-  }, []);
+    checkLiveVideos(videos);
+  }, [videos]);
 
   const changeLayout = () => {
     if (userLayout === 'small') {

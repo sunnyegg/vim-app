@@ -27,6 +27,7 @@ const Home = () => {
   return (
     <>
       {loading ? <Loadingbar /> : ''}
+      {!videos?.liveVideos?.length ? localStorage.removeItem('watchlist') : ''}
       <div className="vim-container">
         <div className="content">
           <h5>Currently Livestreaming</h5>

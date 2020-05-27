@@ -13,7 +13,7 @@ const ChannelContextProvider = (props) => {
     const dataChannels = await axios
       .get(`${URL}/api/v1/channels`)
       .catch((err) => {
-        console.error(err);
+        console.error(err.message);
         setError(true);
       });
 

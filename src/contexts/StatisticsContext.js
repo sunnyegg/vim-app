@@ -13,7 +13,7 @@ const StatisticsContextProvider = (props) => {
     const dataStatistics = await axios
       .get(`${URL}/api/v1/statistics`)
       .catch((err) => {
-        console.error(err);
+        console.error(err.message);
         setError(true);
       });
 

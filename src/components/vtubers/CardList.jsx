@@ -1,12 +1,11 @@
 import React from 'react';
 import './CardList.style.scss';
 
-const Table = ({ columns, data }) => {
+const Table = ({ data }) => {
   return (
     <div className="vtubers-cardlist">
-      {console.log(columns, data)}
-      {data.map((vtuberdata) => (
-        <div className="vtubers-cardlist-card">
+      {data.map((vtuberdata, index) => (
+        <div className="vtubers-cardlist-card" key={index}>
           <img
             src={vtuberdata.channelIcon}
             className="vtubers-cardlist-card-image"

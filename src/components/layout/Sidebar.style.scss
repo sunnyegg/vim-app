@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import '../../styles/variables.scss';
 
 /* mobile */
 @media only screen and (max-width: 600px) {
@@ -45,7 +45,13 @@
   .sidebar-item:hover .tooltip {
     left: 100%;
     opacity: 1;
-    scale: 1;
+    transform: scale(1);
+  }
+}
+
+.dark {
+  .sidebar {
+    background-color: darken($darkBackground, 5%);
   }
 }
 
@@ -99,18 +105,13 @@
   border-radius: 1px;
   color: white;
   cursor: default;
-  left: 30%;
+  left: -50%;
   opacity: 0;
   padding: 0.3rem 0.5rem;
   position: absolute;
+  transform: scale(0);
   text-align: center;
   top: 30%;
   transition: all 300ms;
   width: 100px;
-}
-
-.dark{
-  .sidebar{
-    background-color: darken($darkBackground,5%);
-  }
 }

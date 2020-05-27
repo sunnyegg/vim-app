@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { ChannelContext } from './ChannelContext';
+import restructure from '../helpers/restructureVideo';
 
 export const VideoContext = createContext();
 const URL = process.env.REACT_APP_API_URL;
@@ -48,7 +49,7 @@ const VideoContextProvider = (props) => {
       const videos = await axios
         .get(`${url}/api/v1/videos?page=${page}`)
         .catch((err) => {
-          console.error(err);
+          console.error(err.message);
           setError(true);
         });
 
@@ -74,44 +75,6 @@ const VideoContextProvider = (props) => {
       {props.children}
     </VideoContext.Provider>
   );
-};
-
-const restructure = (videoData, channelData, type) => {
-  const imgReg = /hqdefault.*/gm;
-  const dateNow = new Date().toISOString();
-
-  if (videoData.length) {
-    for (const item of videoData) {
-      if (item.channelId === channelData.id) {
-        item.thumbnail = item.thumbnail.replace(imgReg, 'maxresdefault.jpg');
-        item['channelIcon'] = channelData.channel.channelIcon;
-        item['agency'] = channelData.agency;
-      }
-
-      if (item.eventType === 'upcoming' && dateNow >= item.date) {
-        item.eventType = 'live';
-      }
-    }
-
-    const filtered = videoData.filter((video) => video.eventType === type);
-    return sortFilter(filtered);
-  }
-
-  return [];
-};
-
-const sortFilter = (item) => {
-  return [
-    ...new Set(
-      item.sort((a, b) => {
-        if (a.eventType === 'upcoming') {
-          return new Date(a.date) - new Date(b.date);
-        }
-
-        return new Date(b.date) - new Date(a.date);
-      })
-    ),
-  ];
 };
 
 export default VideoContextProvider;

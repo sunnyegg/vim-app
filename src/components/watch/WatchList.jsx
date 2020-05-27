@@ -21,6 +21,7 @@ const WatchList = ({ video, watchList }) => {
       <iframe
         src={url}
         allow="encrypted-media"
+        allowFullScreen
         frameBorder="0"
         title="Watchlist"
         className="vim-player"

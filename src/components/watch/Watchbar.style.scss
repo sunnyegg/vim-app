@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import '../../styles/variables.scss';
 
 @media only screen and (max-width: 600px) {
   .livecontrol .icon {
@@ -23,6 +23,15 @@
 @media only screen and (max-width: 1000px) {
   .livebar {
     overflow-x: scroll;
+  }
+}
+
+.dark {
+  .watchbar {
+    background-color: darken($darkBackground, 5%);
+  }
+  .icon {
+    color: $darkTextColor;
   }
 }
 
@@ -60,6 +69,21 @@
   overflow-x: scroll;
 }
 
+.show-watchbar {
+  align-items: center;
+  background-color: $primaryColor;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0 10px;
+  position: absolute;
+  right: 0;
+  width: 50px;
+}
+
 .watchbar {
   display: flex;
   flex-direction: row;
@@ -67,13 +91,4 @@
   padding: 0.5rem;
   transition: all 300ms;
   background-color: #eee;
-}
-
-.dark {
-  .watchbar{
-    background-color: darken($darkBackground, 5%);
-  }
-  .icon{
-    color: $darkTextColor;
-  }
 }

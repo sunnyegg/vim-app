@@ -1,17 +1,33 @@
 /* mobile */
 @media only screen and (max-width: 600px) {
+  .hasChat {
+    width: 100rem;
+    height: 400px;
+  }
+
   .small {
-    height: calc(0.42 * 200px);
-    width: calc(0.42 * 355px);
+    height: calc(0.7 * 200px);
+    width: calc(0.7 * 355px);
+    margin: 0.5rem auto;
   }
 
   .large {
     height: calc(1 * 200px);
     width: calc(1 * 355px);
+    margin: 0.5rem auto;
   }
 
-  .watchlist {
-    margin: 0 0.5rem 0.5rem 0;
+  .max {
+    height: 200px;
+    width: 100vw;
+  }
+
+  .vim-chat {
+    width: 100%;
+  }
+
+  .vim-player {
+    width: 100%;
   }
 }
 
@@ -24,7 +40,7 @@
 
   .large {
     height: 25vw;
-    width: 49%;
+    width: 45vw;
   }
 
   .max {
@@ -33,8 +49,25 @@
     height: 80vh;
   }
 
-  .watchlist {
-    margin: 0 0.5rem 0.5rem 0;
-    transition: all 300ms;
+  .vim-chat {
+    height: auto;
   }
+
+  .vim-player {
+    width: 100%;
+  }
+
+  .watchlist-content {
+    margin: 0 0.5rem 0.5rem 0;
+  }
+}
+
+.hasChat {
+  width: 100%;
+  height: 400px;
+}
+
+.watchlist-content {
+  display: flex;
+  transition: all 300ms;
 }

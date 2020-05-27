@@ -6,6 +6,7 @@ const Watchbar = ({
   addWatchList,
   changeLayout,
   removeWatch,
+  handleChat,
   watchList,
   videos,
 }) => {
@@ -86,17 +87,15 @@ const Watchbar = ({
           }
         >
           <ul className="livebar-content">
-            {videos?.map((video) => {
+            {videos?.map((video, index) => {
               return (
                 <LivebarItem
-                  key={video.videoId}
-                  icon={video.channelIcon}
-                  thumbnail={video.thumbnail}
-                  title={video.title}
-                  videoId={video.videoId}
+                  key={index}
+                  video={video}
                   watchList={watchList}
                   addWatchList={addWatchList}
                   removeWatch={removeWatch}
+                  handleChat={handleChat}
                 />
               );
             })}
@@ -135,7 +134,7 @@ const Watchbar = ({
       </div>
       {!watchbar ? (
         <button
-          className="waves-effect waves-dark btn-flat right"
+          className="waves-effect waves-dark btn-flat show-watchbar"
           onClick={toggleWatchbar}
           title="Show Watchbar"
         >

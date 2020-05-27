@@ -3,6 +3,7 @@ import Loadingbar from '../layout/Loadingbar';
 import Watchbar from './Watchbar';
 import WatchList from './WatchList';
 import { VideoContext } from '../../contexts/VideoContext';
+import removeDuplicates from '../../helpers/removeDuplicates';
 import './Watch.style.scss';
 
 const Watch = () => {
@@ -10,10 +11,6 @@ const Watch = () => {
   const userLayout = localStorage.getItem('layout') || 'small';
   const [watchList, setWatchList] = useState([]);
   const [layout, setLayout] = useState(userLayout);
-
-  const filterData = (data) => {
-    return [...new Set(data)];
-  };
 
   const checkLiveVideos = (videosData) => {
     const watchListUser = localStorage.getItem('watchlist');
@@ -24,7 +21,9 @@ const Watch = () => {
 
       if (videosData?.liveVideos?.length) {
         for (const video of videosData.liveVideos) {
-          filtered = parsed.filter((id) => id === video.videoId);
+          filtered = parsed.filter(
+            (watchList) => watchList.id === video.videoId
+          );
         }
       }
 
@@ -32,21 +31,35 @@ const Watch = () => {
     }
   };
 
-  const addWatchList = (id) => {
-    if (watchList.length) {
-      const filterWatch = filterData([...watchList, id]);
+  const addWatchList = (data) => {
+    if (watchList?.length) {
+      const filterWatch = removeDuplicates([...watchList, data]);
       setWatchList(filterWatch);
       localStorage.setItem('watchlist', JSON.stringify(filterWatch));
     } else {
-      setWatchList([id]);
-      localStorage.setItem('watchlist', JSON.stringify([id]));
+      setWatchList([data]);
+      localStorage.setItem('watchlist', JSON.stringify([data]));
     }
   };
 
-  const removeWatch = (id) => {
-    const newWatch = watchList.filter((val) => val !== id);
+  const removeWatch = (data) => {
+    const newWatch = watchList.filter((val) => val.id !== data.id);
     setWatchList(newWatch);
     localStorage.setItem('watchlist', JSON.stringify(newWatch));
+  };
+
+  const handleChat = (data) => {
+    if (watchList?.length) {
+      const newWatch = watchList.map((video) => {
+        if (data.id === video.id) {
+          video.showChat = !video.showChat;
+        }
+
+        return video;
+      });
+      setWatchList(newWatch);
+      localStorage.setItem('watchlist', JSON.stringify(newWatch));
+    }
   };
 
   useEffect(() => {
@@ -70,19 +83,20 @@ const Watch = () => {
         addWatchList={addWatchList}
         changeLayout={changeLayout}
         removeWatch={removeWatch}
+        handleChat={handleChat}
         videos={videos?.liveVideos}
         watchList={watchList}
       />
       <div className="watch">
-        <div className="watch-content left-alignment">
+        <div className="watch-content">
           {!loading && !videos?.liveVideos?.length ? (
             <p>No live videos...</p>
           ) : (
-            watchList?.map((videoId) => {
+            watchList?.map((video) => {
               return (
                 <WatchList
-                  key={videoId}
-                  id={videoId}
+                  key={video.id}
+                  video={video}
                   layout={layout}
                   watchList={watchList}
                 />

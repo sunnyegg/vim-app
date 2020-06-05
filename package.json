@@ -1,6 +1,6 @@
 {
   "name": "vim-app",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -10,19 +10,20 @@
     "dayjs": "^1.8.26",
     "dotenv": "^8.2.0",
     "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
-    "react-table": "^7.0.4"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:check": "prettier --config ./.prettierrc --check src/**/*.js*",
-    "lint:write": "prettier --config ./.prettierrc --write src/**/*.js*"
+    "format:check": "prettier --config ./.prettierrc --check src/**/*.js*",
+    "format:write": "prettier --config ./.prettierrc --write src/**/*.js*",
+    "eslint:fix": "eslint src/**/*.js* --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,6 +41,12 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
     "prettier": "^2.0.5"
   }
 }

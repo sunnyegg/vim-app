@@ -1,10 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 export const ChannelContext = createContext();
 const URL = process.env.REACT_APP_API_URL;
 
-const ChannelContextProvider = (props) => {
+const ChannelContextProvider = ({ children }) => {
   const [channels, setChannels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -12,10 +13,7 @@ const ChannelContextProvider = (props) => {
   const getChannels = async () => {
     const dataChannels = await axios
       .get(`${URL}/api/v1/channels`)
-      .catch((err) => {
-        console.error(err.message);
-        setError(true);
-      });
+      .catch(() => setError(true));
 
     if (dataChannels) {
       setChannels(dataChannels.data.data);
@@ -26,11 +24,16 @@ const ChannelContextProvider = (props) => {
   useEffect(() => {
     getChannels();
   }, []);
+
   return (
     <ChannelContext.Provider value={{ channels, loading, error }}>
-      {props.children}
+      {children}
     </ChannelContext.Provider>
   );
+};
+
+ChannelContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ChannelContextProvider;

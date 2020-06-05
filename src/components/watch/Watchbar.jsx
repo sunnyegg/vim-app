@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import LivebarItem from './LivebarItem';
+import { VideoContext } from '../../contexts/VideoContext';
+import { WatchContext } from '../../contexts/WatchContext';
 import './Watchbar.style.scss';
 
-const Watchbar = ({
-  addWatchList,
-  changeLayout,
-  removeWatch,
-  handleChat,
-  watchList,
-  videos,
-}) => {
+const Watchbar = () => {
+  const { changeLayout } = useContext(WatchContext);
+  const { videos } = useContext(VideoContext);
   const [fullscreen, setFullscreen] = useState(false);
   const [watchbar, setWatchbar] = useState(true);
 
@@ -47,33 +44,31 @@ const Watchbar = ({
     }
   };
 
+  const sidebarEl = document.getElementsByClassName('sidebar')[0];
+  const watchEl = document.getElementsByClassName('watch')[0];
+  const watchbarEl = document.getElementsByClassName('watchbar')[0];
+
   const toggleSidebar = () => {
-    const sidebar = document.getElementsByClassName('sidebar')[0];
-    const watch = document.getElementsByClassName('watch')[0];
-    const watchbar = document.getElementsByClassName('watchbar')[0];
-    sidebar.classList.toggle('hide-sidebar');
-    watch.classList.toggle('no-sidebar');
-    watchbar.classList.toggle('no-margin');
+    sidebarEl.classList.toggle('hide-sidebar');
+    watchEl.classList.toggle('no-sidebar');
+    watchbarEl.classList.toggle('no-margin');
   };
 
   const toggleWatchbar = () => {
-    const sidebar = document.getElementsByClassName('sidebar')[0];
-    const watch = document.getElementsByClassName('watch')[0];
-    const watchbar = document.getElementsByClassName('watchbar')[0];
-    const checkSidebar = sidebar.classList.contains('hide-sidebar');
-    const checkWatchNoMargin = watchbar.classList.contains('no-margin');
-    const checkWatchbar = watchbar.classList.contains('hide-watchbar');
+    const checkSidebar = sidebarEl.classList.contains('hide-sidebar');
+    const checkWatchNoMargin = watchbarEl.classList.contains('no-margin');
+    const checkWatchbar = watchbarEl.classList.contains('hide-watchbar');
 
     if (checkWatchNoMargin || checkWatchbar) {
-      watchbar.classList.toggle('no-margin');
+      watchbarEl.classList.toggle('no-margin');
     }
 
     if (!checkSidebar) {
-      watchbar.classList.remove('no-margin');
+      watchbarEl.classList.remove('no-margin');
     }
 
-    watch.classList.toggle('no-watchbar');
-    watchbar.classList.toggle('hide-watchbar');
+    watchEl.classList.toggle('no-watchbar');
+    watchbarEl.classList.toggle('hide-watchbar');
 
     setWatchbar((current) => !current);
   };
@@ -82,27 +77,19 @@ const Watchbar = ({
     <>
       <div className="watchbar lighten-3">
         <div
-          className={
-            videos?.length < 12 ? 'livebar' : 'livebar scroll-vertical'
-          }
+          className={videos.length < 12 ? 'livebar' : 'livebar scroll-vertical'}
         >
           <ul className="livebar-content">
-            {videos?.map((video, index) => {
-              return (
-                <LivebarItem
-                  key={index}
-                  video={video}
-                  watchList={watchList}
-                  addWatchList={addWatchList}
-                  removeWatch={removeWatch}
-                  handleChat={handleChat}
-                />
-              );
-            })}
+            {videos.liveVideos.length
+              ? videos.liveVideos.map((video) => (
+                <LivebarItem key={video.videoId} video={video} />
+              ))
+              : ''}
           </ul>
         </div>
         <div className="livecontrol">
           <button
+            type="button"
             className="waves-effect waves-dark btn-flat"
             onClick={changeLayout}
             title="Change Layout"
@@ -110,6 +97,7 @@ const Watchbar = ({
             <i className="material-icons icon">grid_on</i>
           </button>
           <button
+            type="button"
             className="waves-effect waves-dark btn-flat"
             onClick={toggleFullscreen}
             title="Fullscreen"
@@ -117,6 +105,7 @@ const Watchbar = ({
             <i className="material-icons icon">fullscreen</i>
           </button>
           <button
+            type="button"
             className="waves-effect waves-dark btn-flat"
             onClick={toggleSidebar}
             title="Hide Sidebar"
@@ -124,6 +113,7 @@ const Watchbar = ({
             <i className="material-icons icon">arrow_back</i>
           </button>
           <button
+            type="button"
             className="waves-effect waves-dark btn-flat"
             onClick={toggleWatchbar}
             title="Hide Watchbar"
@@ -134,6 +124,7 @@ const Watchbar = ({
       </div>
       {!watchbar ? (
         <button
+          type="button"
           className="waves-effect waves-dark btn-flat show-watchbar"
           onClick={toggleWatchbar}
           title="Show Watchbar"

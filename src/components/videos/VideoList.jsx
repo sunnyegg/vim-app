@@ -3,76 +3,73 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import PropTypes from 'prop-types';
 import './VideoList.style.scss';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
 
-const VideoList = (props) => {
-  const dateFormat = (date, type) => {
-    if (!date) return null;
-    if (type === 'live') {
+const VideoList = ({
+  id,
+  agency,
+  channelId,
+  title,
+  channelName,
+  date,
+  thumbnail,
+  type,
+  lastItem,
+}) => {
+  const dateFormat = (inputDate, inputType) => {
+    if (!inputDate) return null;
+    if (inputType === 'live') {
       const today = dayjs();
-      const schedule = dayjs(date);
+      const schedule = dayjs(inputDate);
       return today.to(schedule);
-    } else {
-      return dayjs(date).format('LLL');
     }
+
+    return dayjs(inputDate).format('LLL');
   };
 
-  const thumbnailPlaceholder =
-    'https://via.placeholder.com/480x360.png?text=Loading...';
-  const urlChannel = props.channelId
-    ? `https://www.youtube.com/channel/${props.channelId}`
+  const urlChannel = channelId
+    ? `https://www.youtube.com/channel/${channelId}`
     : '';
-  const urlVideo = props.id
-    ? `https://www.youtube.com/watch?v=${props.id}`
-    : '';
+  const urlVideo = id ? `https://www.youtube.com/watch?v=${id}` : '';
 
   return (
     <div
-      ref={props.lastItem}
+      ref={lastItem}
       className={
-        props.type === 'live'
+        type === 'live'
           ? 'card small video-list animation-pulse'
           : 'card small video-list'
       }
     >
       <div className="card-image">
-        {props.type === 'live' ? (
-          <Link to="/watch" title={props.title}>
-            <img
-              src={props.thumbnail || thumbnailPlaceholder}
-              alt="thumbnail"
-            />
+        {type === 'live' ? (
+          <Link to="/watch" title={title}>
+            <img src={thumbnail} alt="thumbnail" />
           </Link>
         ) : (
           <a
             href={urlVideo}
             target="_blank"
             rel="noopener noreferrer"
-            title={props.title}
+            title={title}
           >
-            <img
-              src={props.thumbnail || thumbnailPlaceholder}
-              alt="thumbnail"
-            />
+            <img src={thumbnail} alt="thumbnail" />
           </a>
         )}
 
-        <span className={`card-title tag ${props.agency}`}>
-          {props.agency.charAt(0).toUpperCase() + props.agency.slice(1)}
+        <span className={`card-title tag ${agency}`}>
+          {agency.charAt(0).toUpperCase() + agency.slice(1)}
         </span>
       </div>
       <div className="card-action">
         <div className="card-action-header">
-          {props.type === 'live' ? (
-            <Link
-              to="/watch"
-              className="card-title black-text"
-              title={props.title}
-            >
-              <span>{props.title || ''}</span>
+          {type === 'live' ? (
+            <Link to="/watch" className="card-title black-text" title={title}>
+              <span>{title || ''}</span>
             </Link>
           ) : (
             <a
@@ -80,9 +77,9 @@ const VideoList = (props) => {
               target="_blank"
               rel="noopener noreferrer"
               className="card-title black-text"
-              title={props.title}
+              title={title}
             >
-              <span>{props.title || ''}</span>
+              <span>{title || ''}</span>
             </a>
           )}
         </div>
@@ -91,16 +88,32 @@ const VideoList = (props) => {
           target="_blank"
           rel="noopener noreferrer"
           className="channel black-text"
-          title={props.channelName}
+          title={channelName}
         >
-          <p>{props.channelName || ''}</p>
+          <p>{channelName || ''}</p>
         </a>
-        <p title={dateFormat(props.date, props.type) || ''}>
-          {dateFormat(props.date, props.type) || ''}
+        <p title={dateFormat(date, type) || ''}>
+          {dateFormat(date, type) || ''}
         </p>
       </div>
     </div>
   );
+};
+
+VideoList.propTypes = {
+  id: PropTypes.string.isRequired,
+  agency: PropTypes.string.isRequired,
+  channelId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  channelName: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  lastItem: PropTypes.func,
+};
+
+VideoList.defaultProps = {
+  lastItem: undefined,
 };
 
 export default VideoList;

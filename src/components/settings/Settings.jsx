@@ -31,8 +31,8 @@ const Settings = ({ setDark }) => {
         <div className="switch">
           <label htmlFor="themeToggle">
             <input
+              id="themeToggle"
               type="checkbox"
-              name="themeToggle"
               onChange={() => changeTheme()}
               checked={localStorage.getItem('dark') === 'true'}
             />

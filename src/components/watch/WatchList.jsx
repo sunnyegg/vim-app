@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-nested-ternary */
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { WatchContext } from '../../contexts/WatchContext';
 import './WatchList.style.scss';
 
@@ -11,14 +12,17 @@ const WatchList = ({ video }) => {
   const url = `https://www.youtube.com/embed/${video.id}?enablejsapi=1`;
   const chat = `https://www.youtube.com/live_chat?v=${video.id}&embed_domain=${vim}`;
 
-  const handleLayout = () => {
-    if (watchList.length < 2) return 'watchlist-content max';
-    if (video.showChat) return `watchlist-content ${layout} hasChat`;
-    return `watchlist-content ${layout}`;
-  };
-
   return (
-    <div className={handleLayout}>
+    <div
+      key={video.videoId}
+      className={
+        watchList.length < 2
+          ? 'watchlist-content max'
+          : video.showChat
+            ? `watchlist-content ${layout} hasChat`
+            : `watchlist-content ${layout}`
+      }
+    >
       <iframe
         src={url}
         allow="encrypted-media"
@@ -40,10 +44,6 @@ const WatchList = ({ video }) => {
       )}
     </div>
   );
-};
-
-WatchList.propTypes = {
-  video: PropTypes.shape.isRequired,
 };
 
 export default WatchList;

@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { WatchContext } from '../../contexts/WatchContext';
 import './LivebarItem.style.scss';
 
@@ -12,27 +13,21 @@ const LivebarItem = ({ video }) => {
 
   return (
     <li className="livebar-item" key={video.videoId}>
-      <div
-        role="presentation"
-        onClick={() => {
-          addWatchList({ id: video.videoId, showChat: video.showChat });
-        }}
-        onKeyDown={() => {
-          addWatchList({ id: video.videoId, showChat: video.showChat });
-        }}
-      >
-        <img
-          src={video.thumbnail}
-          alt="thumbnail"
-          title={video.channelName}
-          className="background"
-        />
-        <img
-          src={video.channelIcon}
-          alt="icon"
-          className="animation-pulse vtuber"
-        />
-      </div>
+      <img
+        src={video.thumbnail}
+        alt="thumbnail"
+        title={video.channelName}
+        className="background"
+        onClick={() => addWatchList({ id: video.videoId, showChat: video.showChat })}
+        onKeyDown={() => addWatchList({ id: video.videoId, showChat: video.showChat })}
+      />
+      <img
+        src={video.channelIcon}
+        alt="icon"
+        className="animation-pulse vtuber"
+        onClick={() => addWatchList({ id: video.videoId, showChat: video.showChat })}
+        onKeyDown={() => addWatchList({ id: video.videoId, showChat: video.showChat })}
+      />
       {watchList.map((data) => {
         if (data.id === video.videoId) {
           return (
@@ -63,10 +58,6 @@ const LivebarItem = ({ video }) => {
       })}
     </li>
   );
-};
-
-LivebarItem.propTypes = {
-  video: PropTypes.shape.isRequired,
 };
 
 export default LivebarItem;

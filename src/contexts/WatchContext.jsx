@@ -3,7 +3,6 @@ import React, {
   createContext, useState, useContext, useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
-import removeDuplicates from '../helpers/removeDuplicates';
 import { VideoContext } from './VideoContext';
 
 export const WatchContext = createContext();
@@ -25,15 +24,17 @@ const WatchContextProvider = ({ children }) => {
         videosData.liveVideos.forEach((video) => {
           filtered = parsed.filter((value) => value.id === video.videoId);
         });
-      }
 
-      setWatchList(filtered);
+        setWatchList(filtered);
+      } else {
+        setWatchList([]);
+      }
     }
   };
 
   const addWatchList = (data) => {
     if (watchList.length) {
-      const filterWatch = removeDuplicates([...watchList, data]);
+      const filterWatch = [...new Set([...watchList, data])];
       setWatchList(filterWatch);
       localStorage.setItem('watchlist', JSON.stringify(filterWatch));
     } else {

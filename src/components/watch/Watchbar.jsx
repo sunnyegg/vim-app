@@ -77,7 +77,11 @@ const Watchbar = () => {
     <>
       <div className="watchbar lighten-3">
         <div
-          className={videos.length < 12 ? 'livebar' : 'livebar scroll-vertical'}
+          className={
+            videos.liveVideos.length < 12
+              ? 'livebar'
+              : 'livebar scroll-vertical'
+          }
         >
           <ul className="livebar-content">
             {videos.liveVideos.length

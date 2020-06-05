@@ -15,13 +15,12 @@ const Watch = () => {
       <Watchbar />
       <div className="watch">
         <div className="watch-content">
-          {!loading && !videos.liveVideos.length ? (
-            <p>No live videos...</p>
-          ) : (
-            watchList.map((video) => (
-              <WatchList key={video.videoId} video={video} />
+          {!loading && !videos.liveVideos.length ? <p>No Live Videos...</p> : ''}
+          {watchList.length
+            ? watchList.map((video) => (
+              <WatchList key={video.id} video={video} />
             ))
-          )}
+            : ''}
         </div>
       </div>
     </>

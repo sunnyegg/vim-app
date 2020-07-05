@@ -27,7 +27,7 @@ const StatisticsContextProvider = ({ children }) => {
     if (dataStatistics) {
       dataStatistics.data.data.forEach((allData) => {
         channelsData.forEach((channel) => {
-          if (channel.id === allData.channel) {
+          if (channel.id === allData.channelId) {
             const publishedAt = dayjs(
               channel.channel.channelPublishedAt,
             ).format('LL');

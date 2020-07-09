@@ -46,18 +46,25 @@ const VideoContextProvider = ({ children }) => {
   const getAll = async (inputPage, inputLimit) => {
     setLoading(true);
 
-    if (inputPage >= 20) {
-      setMaxPage(true);
-      setLoading(false);
-    } else {
-      const data = await axios
-        .get(`${URL}/api/v1/videos?page=${inputPage}&limit=${inputLimit}`)
-        .catch(() => setError(true));
+    const data = await axios
+      .get(`${URL}/api/v1/videos?page=${inputPage}&limit=${inputLimit}`)
+      .catch(() => setError(true));
 
-      if (data) {
+    if (data) {
+      if (inputPage > 1) {
+        setVideoData((currentData) => [...currentData, ...data.data.data]);
+        setLoading(false);
+      } else {
         setVideoData(data.data.data);
         setLoading(false);
       }
+    }
+
+    const { totalPage } = data.data.pagination;
+
+    if (inputPage >= totalPage) {
+      setMaxPage(true);
+      setLoading(false);
     }
   };
 

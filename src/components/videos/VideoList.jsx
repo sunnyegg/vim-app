@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazy-load';
 import './VideoList.style.scss';
 
 dayjs.extend(localizedFormat);
@@ -48,7 +49,9 @@ const VideoList = ({
       <div className="card-image">
         {type === 'live' ? (
           <Link to="/watch" title={title}>
-            <img src={thumbnail} alt="thumbnail" />
+            <LazyLoad>
+              <img src={thumbnail} alt="thumbnail" />
+            </LazyLoad>
           </Link>
         ) : (
           <a
@@ -57,7 +60,9 @@ const VideoList = ({
             rel="noopener noreferrer"
             title={title}
           >
-            <img src={thumbnail} alt="thumbnail" />
+            <LazyLoad>
+              <img src={thumbnail} alt="thumbnail" />
+            </LazyLoad>
           </a>
         )}
 

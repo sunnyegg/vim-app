@@ -5,6 +5,8 @@ import React, {
 import PropTypes from 'prop-types';
 import { VideoContext } from './VideoContext';
 
+import removeDupes from '../helpers/removeDuplicates';
+
 export const WatchContext = createContext();
 
 const WatchContextProvider = ({ children }) => {
@@ -34,7 +36,8 @@ const WatchContextProvider = ({ children }) => {
 
   const addWatchList = (data) => {
     if (watchList.length) {
-      const filterWatch = [...new Set([...watchList, data])];
+      const allWatches = [...watchList, data];
+      const filterWatch = removeDupes(allWatches, 'id');
       setWatchList(filterWatch);
       localStorage.setItem('watchlist', JSON.stringify(filterWatch));
     } else {

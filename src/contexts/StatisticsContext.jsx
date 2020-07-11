@@ -27,23 +27,30 @@ const StatisticsContextProvider = ({ children }) => {
     if (dataStatistics) {
       dataStatistics.data.data.forEach((allData) => {
         channelsData.forEach((channel) => {
-          if (channel.id === allData.channel) {
+          if (channel.id === allData.channelId) {
             const publishedAt = dayjs(
               channel.channel.channelPublishedAt,
             ).format('LL');
 
             allData.channelName = channel.channel.channelName;
-            allData.subscriber = parseInt(
-              allData.statistics.subscriberCount,
-              0,
-            ).toLocaleString('id-ID');
+            allData.subscriber = allData.statistics.subscriberCount;
             allData.publishDate = publishedAt;
             allData.agency = channel.agency;
             allData.channelIcon = channel.channel.channelIcon;
             allData.id = channel.id;
+            delete allData.statistics;
           }
         });
       });
+
+      dataStatistics.data.data
+        .sort((a, b) => b.subscriber - a.subscriber)
+        .map((data) => {
+          data.subscriber = parseInt(data.subscriber, 0).toLocaleString(
+            'id-ID',
+          );
+          return data;
+        });
 
       setStatistics(dataStatistics.data.data);
       setLoading(false);

@@ -21,7 +21,7 @@ const restructure = (videoData = [], channelData = {}, type = '') => {
     });
 
     const filtered = videoData.filter((video) => video.eventType === type);
-    return removeDuplicates(sort(filtered));
+    return removeDuplicates(sort(filtered), 'videoId');
   }
 
   return [];

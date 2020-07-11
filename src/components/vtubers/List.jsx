@@ -10,10 +10,13 @@ const List = () => {
   const dataNiji = statistics.filter((data) => data.agency === 'nijisanji');
   const dataHolo = statistics.filter((data) => data.agency === 'hololive');
   const dataMaha = statistics.filter((data) => data.agency === 'mahapanca');
+  const dataInd = statistics.filter((data) => data.agency === 'indie');
 
   const dataNijisanji = useMemo(() => dataNiji, [dataNiji]);
   const dataHololive = useMemo(() => dataHolo, [dataHolo]);
   const dataMahapanca = useMemo(() => dataMaha, [dataMaha]);
+  const dataIndie = useMemo(() => dataInd, [dataInd]);
+
   const columns = [
     {
       Header: ' ',
@@ -71,7 +74,7 @@ const List = () => {
           </div>
           <div className="agency-list">
             <h2 className="agency-name">Indie</h2>
-            <p>Coming soon...</p>
+            <CardList columns={columns} data={dataIndie} />
           </div>
         </div>
       )}

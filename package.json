@@ -1,6 +1,6 @@
 {
   "name": "vim-app",
-  "version": "0.4.5",
+  "version": "0.5.6",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -13,6 +13,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-lazy-load": "^3.1.13",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"
   },
@@ -41,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",

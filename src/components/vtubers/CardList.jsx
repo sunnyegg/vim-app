@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazy-load';
 import './CardList.style.scss';
 
 const CardList = ({ data }) => (
   <div className="vtubers-cardlist">
     {data.map((vtuberdata) => (
       <div className="vtubers-cardlist-card" key={vtuberdata.id}>
-        <img
-          src={vtuberdata.channelIcon}
-          className="vtubers-cardlist-card-image"
-          alt={vtuberdata.channelName}
-        />
+        <LazyLoad>
+          <img
+            src={vtuberdata.channelIcon}
+            className="vtubers-cardlist-card-image"
+            alt={vtuberdata.channelName}
+          />
+        </LazyLoad>
         <div className="vtubers-cardlist-card-detail">
           <div className="vtubers-cardlist-card-title">
             {vtuberdata.channelName}

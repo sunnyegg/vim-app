@@ -20,21 +20,24 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v2
       - name: yarn install
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: install # run 'yarn install'
+          cmd: install
       - name: yarn build
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: build # run 'yarn build'
+          cmd: build
 
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: yarn install
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install # run 'yarn install'
       - name: check code with eslint
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: eslint:check # run 'yarn eslint:check'
+          cmd: eslint:check

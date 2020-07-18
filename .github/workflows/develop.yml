@@ -47,3 +47,13 @@ jobs:
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: eslint:check
+
+  test-env:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: echo secret in github secret
+        run: echo $ISI
+        env:
+          ISI: ${{ secrets.TEST_SECRET }}

@@ -65,29 +65,23 @@ body {
 }
 
 // Start of Global
-@media only screen and (max-width: 600px) {
-  .vim-container {
-    margin: 1rem 1rem 5rem 1rem;
-  }
-}
-
 .dark {
   background-color: $darkBackground;
   color: $darkTextColor;
 }
-// End of Global
 
 .vim-container {
   margin: 1rem 1rem 1rem 6rem;
 }
 
-// Start of Home
 @media only screen and (max-width: 600px) {
-  .content-video {
-    justify-content: center;
+  .vim-container {
+    margin: 1rem 1rem 5rem 1rem;
   }
 }
+// End of Global
 
+// Start of Home
 .content {
   display: flex;
   flex-direction: column;
@@ -108,9 +102,34 @@ body {
 .vim-notification {
   text-align: center;
 }
+
+@media only screen and (max-width: 600px) {
+  .content-video {
+    justify-content: center;
+  }
+}
+
 // End of Home
 
 // Start of Watch
+.left-alignment {
+  justify-content: flex-start;
+}
+
+.center-alignment {
+  justify-content: center;
+}
+
+.watch {
+  transition: all 300ms;
+}
+
+.watch-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 @media only screen and (max-width: 600px) {
   .no-watchbar {
     margin: 3rem 0 0 0rem !important;
@@ -139,33 +158,9 @@ body {
     margin: 1rem 1rem;
   }
 }
-
-.left-alignment {
-  justify-content: flex-start;
-}
-
-.center-alignment {
-  justify-content: center;
-}
-
-.watch {
-  transition: all 300ms;
-}
-
-.watch-content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 // End of Watch
 
 // Start of Vtuber List
-@media only screen and (min-width: 1280px) {
-  .list {
-    margin: 1rem 15rem 5rem 21rem !important;
-  }
-}
-
 .list {
   margin-top: 3rem;
 }
@@ -183,15 +178,15 @@ body {
     font-size: 2rem;
   }
 }
+
+@media only screen and (min-width: 1280px) {
+  .list {
+    margin: 1rem 15rem 5rem 21rem !important;
+  }
+}
 // End of Vtuber List
 
 // Start of Settings
-@media only screen and (max-width: 600px) {
-  .settings {
-    padding: 0;
-  }
-}
-
 .switch label input[type='checkbox']:checked + .lever:after {
   background-color: $primaryColor;
 }
@@ -221,5 +216,11 @@ input[type='checkbox']:checked:not(:disabled).tabbed:focus ~ .lever::before {
 
 .label {
   margin-right: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .settings {
+    padding: 0;
+  }
 }
 // End of Settings

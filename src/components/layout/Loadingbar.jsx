@@ -1,5 +1,8 @@
+// Packages
 import React from 'react';
-import './Loadingbar.style.scss';
+
+// Other
+import '../../styles/components.scss';
 
 const Loadingbar = () => (
   <div className="progress loading blue darken-3">

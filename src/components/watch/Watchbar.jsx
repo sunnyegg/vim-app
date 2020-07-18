@@ -1,8 +1,15 @@
+// Packages
 import React, { useState, useContext } from 'react';
+
+// Components
 import LivebarItem from './LivebarItem';
+
+// Contexts
 import { VideoContext } from '../../contexts/VideoContext';
 import { WatchContext } from '../../contexts/WatchContext';
-import './Watchbar.style.scss';
+
+// Other
+import '../../styles/components.scss';
 
 const Watchbar = () => {
   const { changeLayout } = useContext(WatchContext);

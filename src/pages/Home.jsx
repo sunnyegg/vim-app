@@ -1,20 +1,29 @@
+// Packages
 import React, { useContext, useRef, useCallback } from 'react';
-import VideoList from '../videos/VideoList';
-import Loadingbar from '../layout/Loadingbar';
-import { VideoContext } from '../../contexts/VideoContext';
-import './Home.style.scss';
+
+// Components
+import VideoList from '../components/videos/VideoList';
+import Loadingbar from '../components/layout/Loadingbar';
+
+// Contexts
+import { VideoContext } from '../contexts/VideoContext';
+
+// Other
+import '../styles/main.scss';
 
 const Home = () => {
   const {
     videos, loading, page, setPage, maxPage,
   } = useContext(VideoContext);
 
+  // infinite scroll
   const observer = useRef();
   const lastItem = useCallback(
     (item) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
 
+      // jika user melihat item terakhir, lanjut page selanjutnya
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && !maxPage) {
           setPage(page + 1);
@@ -29,7 +38,9 @@ const Home = () => {
   return (
     <>
       {loading ? <Loadingbar /> : ''}
+
       {!videos.liveVideos.length ? localStorage.removeItem('watchlist') : ''}
+
       <div className="vim-container">
         <div className="vim-notification">
           <p>

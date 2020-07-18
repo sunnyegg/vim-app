@@ -1,8 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
+
+// Packages
 import React, { useContext } from 'react';
+
+// Contexts
 import { WatchContext } from '../../contexts/WatchContext';
-import './WatchList.style.scss';
+
+// Other
+import '../../styles/components.scss';
 
 const WatchList = ({ video }) => {
   const { watchList } = useContext(WatchContext);

@@ -1,6 +1,9 @@
+// Packages
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Sidebar.style.scss';
+
+// Other
+import '../../styles/components.scss';
 
 const Sidebar = () => (
   <div className="sidebar">

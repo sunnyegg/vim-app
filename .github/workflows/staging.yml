@@ -68,5 +68,4 @@ jobs:
       - name: deploy to surge
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: add global surge
-          cmd: cd build && move index.html 200.html && surge ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+          cmd: add global surge && cd build && move index.html 200.html && surge ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}

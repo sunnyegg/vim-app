@@ -74,5 +74,5 @@ jobs:
       - name: deploy to surge
         run: |
           cd build/
-          mv index.html 200.html
+          sudo mv index.html 200.html
           surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}

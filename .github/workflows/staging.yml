@@ -67,9 +67,12 @@ jobs:
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build
+          
+      - name: install surge
+        run: |
+          npm install --global surge
 
       - name: deploy to surge
         run: |
-          yarn add global surge
           cd build && move index.html 200.html
           surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}

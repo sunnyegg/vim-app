@@ -1,8 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
+// Packages
 import React, { useContext } from 'react';
+
+// Contexts
 import { WatchContext } from '../../contexts/WatchContext';
-import './LivebarItem.style.scss';
+
+// Other
+import '../../styles/components.scss';
 
 const LivebarItem = ({ video }) => {
   const {

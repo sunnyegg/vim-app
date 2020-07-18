@@ -1,6 +1,6 @@
 {
   "name": "vim-app",
-  "version": "0.5.6",
+  "version": "0.5.8",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -24,7 +24,8 @@
     "eject": "react-scripts eject",
     "format:check": "prettier --config ./.prettierrc --check src/**/*.js*",
     "format:write": "prettier --config ./.prettierrc --write src/**/*.js*",
-    "eslint:fix": "eslint src/**/*.js* --fix"
+    "eslint:fix": "eslint src/**/*.js* --fix",
+    "eslint:check": "eslint src/**/*.js* --fix-dry-run"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,0 +1,573 @@
+@import './main.scss';
+
+//
+// ALL VARIABLES GOES HERE
+//
+
+$vtubers-cardlist-card-wide-width: calc((99vw - 36rem) / 4 - 1rem);
+$vtubers-cardlist-card-width: calc((99vw - 7rem) / 4 - 1rem);
+$vtubers-cardlist-card-mobile-width: calc((99vw - 3rem) / 2 - 1rem);
+
+// Start of Loading Bar
+.loading {
+  margin: 0 0 1rem 0;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+// End of Loading Bar
+
+// Start of Sidebar
+.dark {
+  .sidebar {
+    background-color: darken($darkBackground, 5%);
+  }
+}
+
+.sidebar {
+  background-color: white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  transition: 300ms;
+  z-index: 5;
+}
+
+.sidebar .icon {
+  font-size: 2.5rem;
+  transition: 300ms;
+}
+
+.sidebar-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+
+.sidebar-item {
+  position: relative;
+  transition: 300ms;
+  width: 100%;
+}
+
+.sidebar-item:hover {
+  background-color: $primaryColor;
+}
+
+.sidebar-item:hover .icon {
+  color: white;
+}
+
+.sidebar-link {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  outline: none;
+  width: 100%;
+}
+
+.tooltip {
+  background-color: $secondaryColor;
+  border-radius: 1px;
+  color: white;
+  cursor: default;
+  left: -50%;
+  opacity: 0;
+  padding: 0.3rem 0.5rem;
+  position: absolute;
+  transform: scale(0);
+  text-align: center;
+  top: 30%;
+  transition: all 300ms;
+  width: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+  .hide-sidebar {
+    bottom: -60px !important;
+  }
+
+  .sidebar {
+    bottom: 0;
+    height: 4rem;
+    width: 100vw !important;
+  }
+
+  .sidebar-content {
+    flex-direction: row !important;
+  }
+
+  .sidebar-item {
+    height: 4rem;
+  }
+
+  .tooltip {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .hide-sidebar {
+    left: -100px !important;
+  }
+
+  .sidebar {
+    height: 100vh;
+    left: 0;
+    top: 0;
+    width: 5rem;
+  }
+
+  .sidebar-item {
+    height: 5rem;
+  }
+
+  .sidebar-item:hover .tooltip {
+    left: 100%;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+// End of Sidebar
+
+// Start of CardList
+.vtubers-cardlist-card {
+  width: $vtubers-cardlist-card-width;
+  display: inline-block;
+  text-align: center;
+  margin: 0.5rem;
+  background-color: white;
+  -webkit-transition: -webkit-box-shadow 0.25s;
+  transition: -webkit-box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.vtubers-cardlist-card-image {
+  width: calc(#{$vtubers-cardlist-card-width});
+  height: calc(#{$vtubers-cardlist-card-width});
+  object-fit: cover;
+}
+
+.vtubers-cardlist {
+  display: block;
+}
+
+.vtubers-cardlist-card-detail {
+  padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+}
+
+.vtubers-cardlist-card-title {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  height: 5rem;
+  overflow-x: visible;
+  font-weight: 600;
+}
+
+.vtubers-cardlist-card-subtitle {
+  font-size: 0.8rem;
+  color: #555555;
+}
+
+.vtubers-cardlist-card-subscribebuttoncontainer {
+  margin-top: 1rem;
+}
+
+.vtubers-cardlist-card-subscribebutton {
+  &:hover {
+    color: #0986c5;
+    background-color: rgb(231, 231, 231);
+  }
+  text-transform: uppercase;
+  background-color: #0986c5;
+  color: white;
+  padding: 0.25rem 1rem;
+  font-weight: 600;
+}
+
+.dark {
+  .vtubers-cardlist-card-subtitle {
+    font-size: 0.8rem;
+    color: #bbbbbb;
+  }
+  .vtubers-cardlist-card {
+    background-color: #1c1c1c;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .vtubers-cardlist-card {
+    width: $vtubers-cardlist-card-mobile-width;
+  }
+
+  .vtubers-cardlist-card-image {
+    width: calc(#{$vtubers-cardlist-card-mobile-width});
+    height: calc(#{$vtubers-cardlist-card-mobile-width});
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .vtubers-cardlist-card {
+    width: $vtubers-cardlist-card-wide-width;
+  }
+
+  .vtubers-cardlist-card-image {
+    width: calc(#{$vtubers-cardlist-card-wide-width});
+    height: calc(#{$vtubers-cardlist-card-wide-width});
+  }
+}
+// End of CardList
+
+// Start of VideoList
+.card
+  .card-action
+  a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  margin: 0;
+  outline: none;
+}
+
+.card .icon {
+  border-radius: 50%;
+  height: 2rem;
+  margin: 0 1rem 0 0;
+  width: 2rem;
+}
+
+.card .card-image {
+  max-height: 100% !important;
+}
+
+.card-action {
+  border-top: 0 !important;
+  padding: 0.5rem 0.5rem !important;
+}
+
+.card-action .card-title {
+  display: -webkit-box;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+}
+
+.card-action .card-title:hover {
+  color: grey !important;
+}
+
+.card-action p {
+  font-size: 12px;
+  margin: 0;
+  text-align: center;
+}
+
+.card-action-header {
+  align-items: center;
+  display: flex;
+  margin: 0;
+}
+
+.channel {
+  display: -webkit-box;
+  overflow: hidden;
+  text-transform: none !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+}
+
+.channel:hover {
+  color: grey !important;
+}
+
+.status {
+  border: 1px solid white;
+  bottom: 5px !important;
+  cursor: default;
+  font-size: 1em !important;
+  margin: 1rem 0.5rem;
+  left: unset !important;
+  padding: 0 0.5rem !important;
+  right: 0 !important;
+}
+
+.tag {
+  bottom: unset !important;
+  cursor: default;
+  font-size: 1em !important;
+  margin: 0.5rem;
+  padding: 0 0.5rem !important;
+  top: 0;
+}
+
+.video-list {
+  height: 250px !important;
+  margin: 0 1rem 1rem 0;
+  width: 280px !important;
+}
+
+.nijisanji,
+.hololive,
+.indie,
+.mahapanca {
+  padding: 3px 10px;
+  color: white;
+  border-radius: 3px;
+}
+.nijisanji {
+  background-color: #2d4b70;
+}
+.hololive {
+  background-color: #27c6fc;
+}
+.mahapanca,
+.indie {
+  background-color: black;
+}
+
+.dark {
+  .card-action {
+    background-color: darken($darkBackground, 5%);
+    a,
+    span,
+    p {
+      color: $darkTextColor;
+    }
+  }
+}
+// End of VideoList
+
+// Start of LivebarItem
+.background {
+  filter: blur(0.8px);
+  height: 100%;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  width: 150%;
+}
+
+.chat {
+  background: transparent;
+  border: 0;
+  bottom: 0;
+  color: white;
+  position: absolute;
+  right: 0;
+}
+
+.livebar-item {
+  align-items: center;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  height: auto;
+  justify-content: center;
+  margin: 0.1rem;
+  overflow: hidden;
+  padding: 0.5rem;
+  position: relative;
+  width: 100px;
+}
+
+.remove-item {
+  z-index: 1;
+}
+
+.vtuber {
+  border-radius: 50%;
+  bottom: 0;
+  height: 80%;
+  position: absolute;
+  top: 5px;
+  width: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .chat {
+    display: none;
+  }
+}
+// End of LivebarItem
+
+// Start of Watchbar
+.dark {
+  .watchbar {
+    background-color: darken($darkBackground, 5%);
+  }
+  .icon {
+    color: $darkTextColor;
+  }
+}
+
+.hide-watchbar {
+  margin: -100px 0 0 0;
+}
+
+.livebar {
+  border-right: 1px solid black;
+  display: flex;
+  margin: 0 0.5rem 0 0;
+  width: 90%;
+}
+
+.livebar-content {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.livecontrol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 150px;
+}
+
+.no-margin {
+  margin: 0 !important;
+  transition: all 300ms;
+}
+
+.scroll-vertical {
+  overflow-x: scroll;
+}
+
+.show-watchbar {
+  align-items: center;
+  background-color: $primaryColor;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0 10px;
+  position: absolute;
+  right: 0;
+  width: 50px;
+}
+
+.watchbar {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  padding: 0.5rem;
+  transition: all 300ms;
+  background-color: #eee;
+}
+
+@media only screen and (max-width: 600px) {
+  .livecontrol .icon {
+    font-size: 1.2rem;
+  }
+
+  .watchbar {
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .livecontrol .icon {
+    font-size: 1.5rem;
+  }
+
+  .watchbar {
+    margin: 0 0 0 5rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .livebar {
+    overflow-x: scroll;
+  }
+}
+// End of Watchbar
+
+// Start of WatchList
+.hasChat {
+  width: 100%;
+  height: 400px;
+}
+
+.watchlist-content {
+  display: flex;
+  transition: all 300ms;
+}
+
+@media only screen and (max-width: 600px) {
+  .hasChat {
+    width: 100rem;
+    height: 400px;
+  }
+
+  .small {
+    height: calc(0.7 * 200px);
+    width: calc(0.7 * 355px);
+    margin: 0.5rem auto;
+  }
+
+  .large {
+    height: calc(1 * 200px);
+    width: calc(1 * 355px);
+    margin: 0.5rem auto;
+  }
+
+  .max {
+    height: 200px;
+    width: 100vw;
+  }
+
+  .vim-chat {
+    width: 100%;
+  }
+
+  .vim-player {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .small {
+    height: calc(1 * 200px);
+    width: calc(1 * 355px);
+  }
+
+  .large {
+    height: 25vw;
+    width: 45vw;
+  }
+
+  .max {
+    display: flex;
+    flex: 1;
+    height: 80vh;
+  }
+
+  .vim-chat {
+    height: auto;
+  }
+
+  .vim-player {
+    width: 100%;
+  }
+
+  .watchlist-content {
+    margin: 0 0.5rem 0.5rem 0;
+  }
+}
+// End of WatchList

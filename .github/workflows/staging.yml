@@ -69,8 +69,7 @@ jobs:
           cmd: build
           
       - name: install surge
-        run: |
-          npm install --global surge
+        run: sudo npm install --global surge
 
       - name: deploy to surge
         run: |

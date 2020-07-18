@@ -61,10 +61,12 @@ jobs:
           cmd: install
 
       - name: set ENV && yarn build
-        run: |
-          ::set-env name={REACT_APP_API_URL}::{${{ secrets.REACT_APP_API_URL }}}
-          ::set-env name={REACT_APP_VIM_URL_STAGING}::{${{ secrets.REACT_APP_VIM_URL_STAGING }}}
-          yarn build
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_VIM_URL: ${{ secrets.REACT_APP_VIM_URL_STAGING }}
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build
 
       - name: deploy to surge
         run: |

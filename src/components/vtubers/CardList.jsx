@@ -1,7 +1,10 @@
+// Packages
 import React from 'react';
 import PropTypes from 'prop-types';
 import LazyLoad from 'react-lazy-load';
-import './CardList.style.scss';
+
+// Other
+import '../../styles/components.scss';
 
 const CardList = ({ data }) => (
   <div className="vtubers-cardlist">

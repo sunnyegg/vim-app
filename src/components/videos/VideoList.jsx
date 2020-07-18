@@ -1,12 +1,16 @@
+// Packages
 import React from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import PropTypes from 'prop-types';
 import LazyLoad from 'react-lazy-load';
-import './VideoList.style.scss';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
+// Other
+import '../../styles/components.scss';
+
+// Init
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
 

@@ -1,8 +1,15 @@
+// Packages
 import React, { useContext, useMemo } from 'react';
-import CardList from './CardList';
-import Loadingbar from '../layout/Loadingbar';
-import { StatisticsContext } from '../../contexts/StatisticsContext';
-import './List.style.scss';
+
+// Components
+import CardList from '../components/vtubers/CardList';
+import Loadingbar from '../components/layout/Loadingbar';
+
+// Contexts
+import { StatisticsContext } from '../contexts/StatisticsContext';
+
+// Other
+import '../styles/main.scss';
 
 const List = () => {
   const { statistics, loading } = useContext(StatisticsContext);

@@ -1,6 +1,9 @@
+// Packages
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Settings.style.scss';
+
+// Other
+import '../styles/main.scss';
 
 const Settings = ({ setDark }) => {
   const changeTheme = () => {

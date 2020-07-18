@@ -1,5 +1,5 @@
 // Packages
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 // Components
 import LivebarItem from './LivebarItem';
@@ -16,6 +16,9 @@ const Watchbar = () => {
   const { videos } = useContext(VideoContext);
   const [fullscreen, setFullscreen] = useState(false);
   const [watchbar, setWatchbar] = useState(true);
+  const [sidebarEl, setSidebarEl] = useState([]);
+  const [watchEl, setWatchEl] = useState([]);
+  const [watchbarEl, setWatchbarEl] = useState([]);
 
   const toggleFullscreen = () => {
     if (!fullscreen) {
@@ -51,9 +54,11 @@ const Watchbar = () => {
     }
   };
 
-  const sidebarEl = document.getElementsByClassName('sidebar')[0];
-  const watchEl = document.getElementsByClassName('watch')[0];
-  const watchbarEl = document.getElementsByClassName('watchbar')[0];
+  useEffect(() => {
+    setSidebarEl(document.getElementsByClassName('sidebar')[0]);
+    setWatchEl(document.getElementsByClassName('watch')[0]);
+    setWatchbarEl(document.getElementsByClassName('watchbar')[0]);
+  }, []);
 
   const toggleSidebar = () => {
     sidebarEl.classList.toggle('hide-sidebar');

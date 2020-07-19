@@ -1,6 +1,11 @@
 // Packages
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from 'react-router-dom';
 
 // Pages
 import Home from './pages/Home';
@@ -17,6 +22,16 @@ import StatisticsContextProvider from './contexts/StatisticsContext';
 import VideoContextProvider from './contexts/VideoContext';
 import WatchContextProvider from './contexts/WatchContext';
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => {
   const [darkMode, setDarkMode] = useState(localStorage.getItem('dark'));
 
@@ -28,6 +43,7 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className={`App ${darkMode === 'true' ? 'dark' : ''}`}>
         <ChannelContextProvider>
           <StatisticsContextProvider>

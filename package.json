@@ -1,6 +1,6 @@
 {
   "name": "vim-app",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

@@ -42,23 +42,7 @@ const Home = () => {
       {!videos.liveVideos.length ? localStorage.removeItem('watchlist') : ''}
 
       <div className="vim-container">
-        <div className="vim-notification">
-          <p>
-            This is a development version. (v0.5)
-            <br />
-            Production version:
-            {' '}
-            <a
-              href="https://vim.sunnyegg.id/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Vtubers Indo Monitor
-            </a>
-            {' '}
-            (v0.4)
-          </p>
-        </div>
+
         <div className="content">
           <h5>Currently Livestreaming</h5>
           <div className="content-video">

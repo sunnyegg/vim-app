@@ -414,7 +414,7 @@ $vtubers-cardlist-card-mobile-width: calc((99vw - 3rem) / 2 - 1rem);
 }
 
 .hide-watchbar {
-  margin: -100px 0 0 0;
+  margin: -100px 0 0 0 !important;
 }
 
 .livebar {

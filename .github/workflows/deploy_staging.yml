@@ -1,11 +1,8 @@
-name: VIM Test Develop
+name: VIM Deploy Staging
 
 on:
   push:
-    branches: [develop]
-
-  pull_request:
-    branches: [develop]
+    branches: [staging]
 
 jobs:
   build:
@@ -47,3 +44,32 @@ jobs:
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: eslint:check
+
+  deploy:
+    needs: [build, test]
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: yarn install
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
+      - name: set ENV && yarn build
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_VIM_URL: ${{ secrets.REACT_APP_VIM_URL_STAGING }}
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build
+
+      - name: install surge
+        run: sudo npm install --global surge
+
+      - name: deploy to surge
+        run: |
+          cd build/
+          sudo mv index.html 200.html
+          surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
